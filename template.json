@@ -1,0 +1,119 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "CloudConductor pattern template",
+
+  "Parameters" : {
+    "KeyName" : {
+      "Description" : "Name of an existing EC2/OpenStack KeyPair to enable SSH access to the instances",
+      "Type" : "String",
+      "MinLength" : "1",
+      "MaxLength" : "255",
+      "AllowedPattern" : "[\\x20-\\x7E]*",
+      "ConstraintDescription" : "can contain only ASCII characters."
+    },
+    "SSHLocation" : {
+      "Description" : "The IP address range that can be used to SSH to the EC2/OpenStack instances",
+      "Type" : "String",
+      "MinLength" : "9",
+      "MaxLength" : "18",
+      "Default" : "0.0.0.0/0",
+      "AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription" : "must be a valid IP CIDR range of the form x.x.x.x/x."
+    },
+    "monitoringInstanceType" : {
+      "Description" : "MonitoringServer instance type",
+      "Type" : "String",
+      "Default" : "t2.small"
+    }
+    "monitoringImageId" : {
+      "Description" : "MonitoringServer Image Id. This parameter is automatically filled by CloudConductor.",
+      "Type" : "String"
+    },
+    "VpcId" : {
+      "Description" : "The Vpc Id which is used by platform pattern.",
+      "Type" : "String"
+    },
+    "SubnetId" : {
+      "Description" : "The Subnet Id which is used by platform pattern.",
+      "Type" : "String"
+    },
+    "ClusterAddress" : {
+      "Description" : "Private IP Address to join cluster.",
+      "Type" : "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    },
+    "SharedSecurityGroup" : {
+      "Description" : "The SecurityGroup which is used by platform pattern.",
+      "Type" : "String"
+    },
+    "CloudConductorLocation" : {
+      "Description" : "The IP address range of CloudConductor server to enable serf rpc access to frontend instance. This parameter is automatically filled by CloudConductor.",
+      "Type" : "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
+    }
+  },
+
+  "Mappings" : {
+  },
+
+  "Resources" : {
+    "MonitoringServer" : {
+      "Type" : "AWS::EC2::Instance",
+      "Metadata" : {
+        "Role" : "monitoring"
+      },
+      "Properties" : {
+        "ImageId" : { "Ref" : "monitoringImageId" },
+        "InstanceType" : { "Ref" : "monitoringInstanceType" },
+        "KeyName" : { "Ref" : "KeyName" },
+        "NetworkInterfaces" : [{
+           "DeviceIndex" : "0",
+           "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
+        }],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/bin/sh -v\n",
+          "# Helper function\n",
+          "function error_exit\n",
+          "{\n",
+          "  /opt/aws/bin/cfn-signal -e 1 -r \"$1\" '", { "Ref" : "MonitoringWaitHandle" }, "'\n",
+          "  exit 1\n",
+          "}\n",
+          "# Set Parameters\n",
+          "/bin/echo 'ROLE=monitoring' > /opt/cloudconductor/config\n",
+          "/bin/echo 'SERF_JOIN_ADDRESS=", { "Ref" : "ClusterAddress" }, "' >> /opt/cloudconductor/config\n",
+          "# Run Serf\n",
+          "/etc/init.d/serf restart || error_exit 'Failed to start serf agent'\n",
+          "# Send success signal\n",
+          "/opt/aws/bin/cfn-signal -e 0 -r 'MonitoringServer Setup complete' '", { "Ref" : "MonitoringWaitHandle" }, "'\n"
+        ]]}},
+        "Tags" : [{"Key": "Name", "Value": "MonitoringServer"}, {"Key": "Role", "Value": "monitoring"}]
+      }
+    },
+    "MonitoringNetworkInterface" : {
+      "Type" : "AWS::EC2::NetworkInterface",
+      "Properties" : {
+        "GroupSet" : [{"Ref" : "SharedSecurityGroup"}],
+        "SubnetId" : { "Ref" : "SubnetId" }
+      }
+    },
+    "MonitoringWaitHandle" : {
+      "Type" : "AWS::CloudFormation::WaitConditionHandle"
+    },
+    "MonitoringWaitCondition" : {
+      "Type" : "AWS::CloudFormation::WaitCondition",
+      "DependsOn" : "MonitoringServer",
+      "Properties" : {
+        "Handle" : { "Ref" : "MonitoringWaitHandle" },
+        "Timeout" : "600"
+      }
+    }
+  },
+  "Outputs" : {
+  }
+}
