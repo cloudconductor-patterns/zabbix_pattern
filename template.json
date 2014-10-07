@@ -63,6 +63,7 @@
   },
 
   "Resources" : {
+
     "MonitoringServer" : {
       "Type" : "AWS::EC2::Instance",
       "Metadata" : {
@@ -74,7 +75,7 @@
         "KeyName" : { "Ref" : "KeyName" },
         "NetworkInterfaces" : [{
            "DeviceIndex" : "0",
-           "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
+           "NetworkInterfaceId" : { "Ref" : "monitoringNetworkInterface" }
         }],
         "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
           "#!/bin/sh -v\n",
@@ -98,8 +99,46 @@
     "MonitoringNetworkInterface" : {
       "Type" : "AWS::EC2::NetworkInterface",
       "Properties" : {
-        "GroupSet" : [{"Ref" : "SharedSecurityGroup"}],
+        "GroupSet" : [{"Ref": "MonitoringSecurityGroup"}],
         "SubnetId" : { "Ref" : "SubnetId" }
+      }
+    },
+    "FrontendEIP" : {
+      "Type" : "AWS::EC2::EIP",
+      "Properties" : {
+        "Domain" : "vpc"
+      }
+    },
+    "EIPAssociation" : {
+      "Type" : "AWS::EC2::EIPAssociation",
+      "Properties" : {
+        "AllocationId" : { "Fn::GetAtt" : [ "FrontendEIP", "AllocationId" ]},
+        "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
+      }
+    },
+    "MonitoringSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Enable SSH access, HTTP access via port 80, Zabbix-agent access",
+        "VpcId" : { "Ref" : "VpcId" },
+        "SecurityGroupIngress" : [
+          {"IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : { "Ref" : "SSHLocation" }},
+          {"IpProtocol" : "tcp", "FromPort" : "10051", "ToPort" : "10051", "CidrIp" : "10.0.0.0/16"},
+          {"IpProtocol" : "tcp", "FromPort" : "7946", "ToPort" : "7946", "CidrIp" : "10.0.0.0/16"},
+          {"IpProtocol" : "tcp", "FromPort" : "8500", "ToPort" : "8500", "CidrIp" : { "Ref" : "CloudConductorLocation" }},
+          {"IpProtocol" : "tcp", "FromPort" : "8300", "ToPort" : "8302", "CidrIp" : "10.0.0.0/16"}
+        ]
+      }
+    },
+    "SharedSecurityGroupInboundRule": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties":{
+        "IpProtocol": "tcp",
+        "FromPort": "10050",
+        "ToPort": "10050",
+        "CidrIp": "10.0.0.0/16",
+        "SourceSecurityGroupId": { "Ref" : "SharedSecurityGroup" },
+        "GroupId": { "Ref" : "SharedSecurityGroup" }
       }
     },
     "MonitoringWaitHandle" : {
@@ -115,5 +154,11 @@
     }
   },
   "Outputs" : {
+    "FrontendAddress" : {
+      "Value" : { "Ref" : "FrontendEIP" },
+      "Description" : "Frontend DNS name or IP address to access serf rpc port from CloudConductor server. This output is required."
+    }
   }
 }
+
+
