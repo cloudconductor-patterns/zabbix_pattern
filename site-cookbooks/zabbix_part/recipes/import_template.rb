@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zabbix_part
-# Recipe:: import
+# Recipe:: import_template
 #
 # Copyright 2014, YOUR_COMPANY_NAME
 #
