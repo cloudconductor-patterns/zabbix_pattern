@@ -7,6 +7,24 @@ action :create do
   }
 
   Chef::Zabbix.with_connection(server_connection) do |connection|
+
+    # delete if there is action with same name
+    connection.query(
+      :method => "action.get",
+      :params => {
+        :output => "actionids",
+        :filter => {
+          :name => new_resource.action_name ? new_resource.action_name : new_resource.name
+        }
+      }
+    ).each do |result|
+      connection.query(
+        :method => "action.delete",
+        :params => [ result["actionid"]  ]
+      )
+    end
+
+
     template_ids = Zabbix::API.find_template_ids(connection, new_resource.template)
     if template_ids.empty?
       Chef::Application.fatal! "Could not find a template named #{new_resource.template}"
