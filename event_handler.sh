@@ -13,4 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ruby pattern_executor.rb "${1}" "${2}"
+cd lib
+ruby event_handler.rb "${1}" "${2}"
