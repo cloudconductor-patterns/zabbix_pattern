@@ -34,26 +34,14 @@ action :create do
      :name => new_resource.action_name ? new_resource.action_name : new_resource.name,
      :eventsource => "2",
      :evaltype => "0",
-     :status => "0",
      :esc_period => "0",
-     :def_shortdata => 'Auto registration: {HOST.HOST}',
-     :def_longdata => 'Host name: {HOST.HOST}\r\nHost IP: {HOST.IP}\r\nAgent port: {HOST.PORT}',
-     :recovery_msg => '0',
-     :r_shortdata => '',
-     :r_longdata => '',
+     :def_shortdata => new_resource.def_shortdata,
+     :def_longdata => new_resource.def_longdata,
      :operations => [
        {
          :operationtype => '2',
-         :esc_period => '0',
-         :esc_step_from => '1',
-         :esc_step_to => '1',
-         :evaltype => '0'
        },{
          :operationtype => '6',
-         :esc_period => '0',
-         :esc_step_from => '1',
-         :esc_step_to => '1',
-         :evaltype => '0',
          :optemplate => [
            {
              :templateid => template_ids.first["templateid"]
