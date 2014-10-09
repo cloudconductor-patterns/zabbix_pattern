@@ -1,5 +1,7 @@
 actions :import
 default_action :import
 
-attribute :server_connection, :kind_of => Hash, :required => true
-attribute :file, :kind_of => String, :required => true
+attribute :zabbix_fqdn, :kind_of => String, :required => true
+attribute :login, :kind_of => String, :required => true
+attribute :password, :kind_of => String, :required => true
+attribute :source, :kind_of => String, :required => true
