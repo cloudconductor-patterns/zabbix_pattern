@@ -26,9 +26,9 @@ action :import do
   }
 
   server_connection = {
-    :url => "http://#{new_resource.zabbix_fqdn}/api_jsonrpc.php",
-    :user => new_resource.login,
-    :password => new_resource.password
+    url: "http://#{new_resource.zabbix_fqdn}/api_jsonrpc.php",
+    user: new_resource.login,
+    password: new_resource.password
   }
 
   zabbix_api_call new_resource.name do
