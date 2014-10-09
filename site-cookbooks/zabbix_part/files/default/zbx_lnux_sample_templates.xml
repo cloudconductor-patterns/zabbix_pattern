@@ -1599,7 +1599,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template OS Linux:vfs.fs.size[{#FSNAME},pfree].last(0)}&lt;20</expression>
+                            <expression>{Template OS Linux Sample:vfs.fs.size[{#FSNAME},pfree].last(0)}&lt;20</expression>
                             <name>Free disk space is less than 20% on volume {#FSNAME}</name>
                             <url/>
                             <status>0</status>
@@ -1644,7 +1644,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>2</type>
                                     <item>
-                                        <host>Template OS Linux</host>
+                                        <host>Template OS Linux Sample</host>
                                         <key>vfs.fs.size[{#FSNAME},total]</key>
                                     </item>
                                 </graph_item>
@@ -1656,7 +1656,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux</host>
+                                        <host>Template OS Linux Sample</host>
                                         <key>vfs.fs.size[{#FSNAME},free]</key>
                                     </item>
                                 </graph_item>
@@ -1809,7 +1809,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux</host>
+                                        <host>Template OS Linux Sample</host>
                                         <key>net.if.in[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1821,7 +1821,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux</host>
+                                        <host>Template OS Linux Sample</host>
                                         <key>net.if.out[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1860,7 +1860,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>CPU load</name>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1881,7 +1881,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>CPU utilization</name>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1902,7 +1902,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>Memory usage</name>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1923,7 +1923,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>Swap usage</name>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1944,7 +1944,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <key>proc.num[]</key>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1965,7 +1965,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <key>proc.num[,,run]</key>
-                                <host>Template OS Linux</host>
+                                <host>Template OS Linux Sample</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1976,7 +1976,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template OS Linux:vfs.file.cksum[/etc/passwd].diff(0)}&gt;0</expression>
+            <expression>{Template OS Linux Sample:vfs.file.cksum[/etc/passwd].diff(0)}&gt;0</expression>
             <name>/etc/passwd has been changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -1986,7 +1986,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:kernel.maxfiles.last(0)}&lt;1024</expression>
+            <expression>{Template OS Linux Sample:kernel.maxfiles.last(0)}&lt;1024</expression>
             <name>Configured max number of opened files is too low on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -1996,7 +1996,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:kernel.maxproc.last(0)}&lt;256</expression>
+            <expression>{Template OS Linux Sample:kernel.maxproc.last(0)}&lt;256</expression>
             <name>Configured max number of processes is too low on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2006,7 +2006,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
+            <expression>{Template OS Linux Sample:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
             <name>Disk I/O is overloaded on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2016,7 +2016,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.uname.diff(0)}&gt;0</expression>
+            <expression>{Template OS Linux Sample:system.uname.diff(0)}&gt;0</expression>
             <name>Host information was changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2026,7 +2026,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.hostname.diff(0)}&gt;0</expression>
+            <expression>{Template OS Linux Sample:system.hostname.diff(0)}&gt;0</expression>
             <name>Hostname was changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2036,7 +2036,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:vm.memory.size[available].last(0)}&lt;20M</expression>
+            <expression>{Template OS Linux Sample:vm.memory.size[available].last(0)}&lt;20M</expression>
             <name>Lack of available memory on server {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2046,7 +2046,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.swap.size[,pfree].last(0)}&lt;50</expression>
+            <expression>{Template OS Linux Sample:system.swap.size[,pfree].last(0)}&lt;50</expression>
             <name>Lack of free swap space on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2056,7 +2056,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.load[percpu,avg1].avg(5m)}&gt;5</expression>
+            <expression>{Template OS Linux Sample:system.cpu.load[percpu,avg1].avg(5m)}&gt;5</expression>
             <name>Processor load is too high on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2066,7 +2066,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:proc.num[].avg(5m)}&gt;300</expression>
+            <expression>{Template OS Linux Sample:proc.num[].avg(5m)}&gt;300</expression>
             <name>Too many processes on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2076,7 +2076,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:proc.num[,,run].avg(5m)}&gt;30</expression>
+            <expression>{Template OS Linux Sample:proc.num[,,run].avg(5m)}&gt;30</expression>
             <name>Too many processes running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2086,7 +2086,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.uptime.change(0)}&lt;0</expression>
+            <expression>{Template OS Linux Sample:system.uptime.change(0)}&lt;0</expression>
             <name>{HOST.NAME} has just been restarted</name>
             <url/>
             <status>0</status>
@@ -2123,7 +2123,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.switches</key>
                     </item>
                 </graph_item>
@@ -2135,7 +2135,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.intr</key>
                     </item>
                 </graph_item>
@@ -2167,7 +2167,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg1]</key>
                     </item>
                 </graph_item>
@@ -2179,7 +2179,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg5]</key>
                     </item>
                 </graph_item>
@@ -2191,7 +2191,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg15]</key>
                     </item>
                 </graph_item>
@@ -2223,7 +2223,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,steal]</key>
                     </item>
                 </graph_item>
@@ -2235,7 +2235,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,softirq]</key>
                     </item>
                 </graph_item>
@@ -2247,7 +2247,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,interrupt]</key>
                     </item>
                 </graph_item>
@@ -2259,7 +2259,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,nice]</key>
                     </item>
                 </graph_item>
@@ -2271,7 +2271,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,iowait]</key>
                     </item>
                 </graph_item>
@@ -2283,7 +2283,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,system]</key>
                     </item>
                 </graph_item>
@@ -2295,7 +2295,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,user]</key>
                     </item>
                 </graph_item>
@@ -2307,7 +2307,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,idle]</key>
                     </item>
                 </graph_item>
@@ -2330,7 +2330,7 @@
             <ymax_type_1>2</ymax_type_1>
             <ymin_item_1>0</ymin_item_1>
             <ymax_item_1>
-                <host>Template OS Linux</host>
+                <host>Template OS Linux Sample</host>
                 <key>vm.memory.size[total]</key>
             </ymax_item_1>
             <graph_items>
@@ -2342,7 +2342,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>vm.memory.size[available]</key>
                     </item>
                 </graph_item>
@@ -2374,7 +2374,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>2</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.swap.size[,total]</key>
                     </item>
                 </graph_item>
@@ -2386,7 +2386,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux</host>
+                        <host>Template OS Linux Sample</host>
                         <key>system.swap.size[,free]</key>
                     </item>
                 </graph_item>
