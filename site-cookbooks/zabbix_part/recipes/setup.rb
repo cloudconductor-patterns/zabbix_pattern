@@ -28,6 +28,41 @@ else
   return
 end
 
+api_connection_info = {
+  url:  "http://#{zabbix_server['zabbix']['web']['fqdn']}/api_jsonrpc.php",
+  user: zabbix_server['zabbix']['web']['login'],
+  password: zabbix_server['zabbix']['web']['password']
+}
+
+cb = run_context.cookbook_collection[cookbook_name]
+cb.manifest['files'].each do |cookbookfile|
+  if cookbookfile['specificity'] == 'zabbix'
+    path = File.expand_path("../../files/#{cookbookfile['specificity']}/#{cookbookfile['name']}", __FILE__)
+    template_xml = open(path).read
+
+    parameters = {
+      format: 'xml',
+      source: template_xml,
+      rules: {
+        items: { createMissing: true },
+        applications: { createMissing: true },
+        graphs: { createMissing: true },
+        groups: { createMissing: true },
+        templateLinkage: { createMissing: true },
+        templates: { createMissing: true },
+        triggers: { createMissing: true }
+      }
+    }
+
+    zabbix_api_call cookbookfile['name'] do
+      action :call
+      server_connection api_connection_info
+      method 'configuration.import'
+      parameters parameters
+    end
+  end
+end
+
 zabbix_part_auto_registration 'auto_registration_action_sample' do
   action :create
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
