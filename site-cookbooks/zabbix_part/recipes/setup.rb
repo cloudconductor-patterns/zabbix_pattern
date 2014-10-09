@@ -18,7 +18,6 @@ include_recipe 'zabbix::database'
 include_recipe 'zabbix::server'
 include_recipe 'zabbix::web'
 include_recipe 'apache2::mod_php5'
-include_recipe 'zabbix_part::import_template'
 
 if node['zabbix']['web']['fqdn']
   zabbix_server = node
@@ -28,39 +27,11 @@ else
   return
 end
 
-api_connection_info = {
-  url:  "http://#{zabbix_server['zabbix']['web']['fqdn']}/api_jsonrpc.php",
-  user: zabbix_server['zabbix']['web']['login'],
-  password: zabbix_server['zabbix']['web']['password']
-}
-
-cb = run_context.cookbook_collection[cookbook_name]
-cb.manifest['files'].each do |cookbookfile|
-  if cookbookfile['specificity'] == 'zabbix'
-    path = File.expand_path("../../files/#{cookbookfile['specificity']}/#{cookbookfile['name']}", __FILE__)
-    template_xml = open(path).read
-
-    parameters = {
-      format: 'xml',
-      source: template_xml,
-      rules: {
-        items: { createMissing: true },
-        applications: { createMissing: true },
-        graphs: { createMissing: true },
-        groups: { createMissing: true },
-        templateLinkage: { createMissing: true },
-        templates: { createMissing: true },
-        triggers: { createMissing: true }
-      }
-    }
-
-    zabbix_api_call cookbookfile['name'] do
-      action :call
-      server_connection api_connection_info
-      method 'configuration.import'
-      parameters parameters
-    end
-  end
+zabbix_part_import_template 'zbx_lnux_sample_templates.xml' do
+  zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
+  login  zabbix_server['zabbix']['web']['login']
+  password zabbix_server['zabbix']['web']['password']
+  source 'zbx_lnux_sample_templates.xml'
 end
 
 zabbix_part_auto_registration 'auto_registration_action_sample' do
