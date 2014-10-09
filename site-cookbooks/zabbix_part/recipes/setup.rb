@@ -40,4 +40,5 @@ zabbix_part_auto_registration 'auto_registration_action_sample' do
   login       zabbix_server['zabbix']['web']['login']
   password    zabbix_server['zabbix']['web']['password']
   template    'Template OS Linux'
+  host_metadata ['ap','db']
 end

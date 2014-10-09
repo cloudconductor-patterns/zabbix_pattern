@@ -48,17 +48,18 @@ action :create do
             }
           ]
         }
-      ]
+      ],
+      conditions: []
     }
 
-    if new_resource.host_metadata
-      params[:conditions] = [
+    new_resource.host_metadata.each do |metadata|
+      params[:conditions].push(
         {
           conditiontype: 24,
           operator: 2,
-          value: new_resource.host_metadata
+          value: metadata
         }
-      ]
+      )
     end
 
     connection.query(
