@@ -15,7 +15,7 @@ else
   return
 end
 
-zabbix_part_auto_registration_action 'auto_registration_action_sample' do
+zabbix_part_auto_registration 'auto_registration_action_sample' do
   action :create
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
   login       zabbix_server['zabbix']['web']['login']
