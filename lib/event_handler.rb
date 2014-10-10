@@ -17,7 +17,7 @@ require 'yaml'
 require 'json'
 require 'active_support'
 require 'cloud_conductor_utils/consul'
-require './logger'
+require_relative './logger'
 
 module ZabbixPattern
   # rubocop: disable ClassLength

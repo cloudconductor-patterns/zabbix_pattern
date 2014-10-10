@@ -13,5 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd lib
-ruby event_handler.rb "${1}" "${2}"
+ruby ./lib/event_handler.rb "${1}" "${2}"
