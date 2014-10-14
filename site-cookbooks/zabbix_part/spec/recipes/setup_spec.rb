@@ -3,30 +3,75 @@ require_relative '../spec_helper'
 describe 'zabbix_part::setup' do
   let(:chef_run) do
     ChefSpec::Runner.new(
-      cookbook_path: ['site-cookbooks', 'cookbooks'],
+      cookbook_path: %w(site-cookbooks cookbooks),
       platform:      'centos',
       version:       '6.5'
-    ).converge(described_recipe)
+    ) do |node|
+      node.automatic['fqdn'] = 'server01.example.com'
+    end.converge(described_recipe)
   end
 
   before do
-    stub_command("/usr/sbin/httpd -t").and_return(0)
-    stub_command("which php").and_return(0)
+    stub_command('/usr/sbin/httpd -t').and_return(0)
+    stub_command('which php').and_return(0)
   end
 
-  it 'installs a package' do
+  it 'install mysql-devel' do
     expect(chef_run).to install_package('mysql-devel')
   end
 
-  it 'include recipes' do
+  it 'include database::mysql' do
     expect(chef_run).to include_recipe 'database::mysql'
+  end
+
+  it 'include mysql::server' do
     expect(chef_run).to include_recipe 'mysql::server'
-    expect(chef_run).to include_recipe 'zabbix::default'
+  end
+
+  it 'include zabbix::default' do
+    expect(chef_run).to include_recipe 'zabbix'
+  end
+
+  it 'include zabbix::database' do
     expect(chef_run).to include_recipe 'zabbix::database'
+  end
+
+  it 'include zabbix::server' do
     expect(chef_run).to include_recipe 'zabbix::server'
+  end
+
+  it 'include zabbix::web' do
     expect(chef_run).to include_recipe 'zabbix::web'
+  end
+
+  it 'include apache2::mod_php5' do
     expect(chef_run).to include_recipe 'apache2::mod_php5'
-    expect(chef_run).to include_recipe 'zabbix_part::import'
+  end
+
+  it 'import zabbix template' do
+    expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(
+      :zabbix_part_import_template,
+      :import,
+      'zbx_lnux_sample_templates.xml'
+    ).with(
+      zabbix_fqdn: 'server01.example.com',
+      login: 'admin',
+      password: 'zabbix',
+      source: 'zbx_lnux_sample_templates.xml'
+    )
+  end
+
+  it 'create augo_registration action' do
+    expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(
+      :zabbix_part_auto_registration,
+      :create,
+      'auto_registration_action_sample'
+    ).with(
+      zabbix_fqdn: 'server01.example.com',
+      login: 'admin',
+      password: 'zabbix',
+      template: 'Template OS Linux',
+      host_metadata: %w(ap db)
+    )
   end
 end
-
