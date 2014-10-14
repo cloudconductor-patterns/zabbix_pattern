@@ -27,11 +27,11 @@ else
   return
 end
 
-zabbix_part_import_template 'zbx_lnux_sample_templates.xml' do
+zabbix_part_import_template 'zbx_template.xml' do
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
   login  zabbix_server['zabbix']['web']['login']
   password zabbix_server['zabbix']['web']['password']
-  source 'zbx_lnux_sample_templates.xml'
+  source 'zbx_template.xml'
 end
 
 zabbix_part_auto_registration 'create auto_registration action' do

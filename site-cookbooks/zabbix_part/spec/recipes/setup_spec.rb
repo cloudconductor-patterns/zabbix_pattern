@@ -52,12 +52,12 @@ describe 'zabbix_part::setup' do
     expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(
       :zabbix_part_import_template,
       :import,
-      'zbx_lnux_sample_templates.xml'
+      'zbx_template.xml'
     ).with(
       zabbix_fqdn: 'server01.example.com',
       login: 'admin',
       password: 'zabbix',
-      source: 'zbx_lnux_sample_templates.xml'
+      source: 'zbx_template.xml'
     )
   end
 
