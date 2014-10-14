@@ -34,11 +34,10 @@ zabbix_part_import_template 'zbx_lnux_sample_templates.xml' do
   source 'zbx_lnux_sample_templates.xml'
 end
 
-zabbix_part_auto_registration 'auto_registration_action_sample' do
+zabbix_part_auto_registration 'create auto_registration action' do
   action :create
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
   login       zabbix_server['zabbix']['web']['login']
   password    zabbix_server['zabbix']['web']['password']
-  template    'Template OS Linux'
-  host_metadata ['ap','db']
+  template    node['zabbix_part']['auto_registration']['template']
 end

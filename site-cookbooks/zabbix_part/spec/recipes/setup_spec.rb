@@ -65,13 +65,12 @@ describe 'zabbix_part::setup' do
     expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(
       :zabbix_part_auto_registration,
       :create,
-      'auto_registration_action_sample'
+      'create auto_registration action'
     ).with(
       zabbix_fqdn: 'server01.example.com',
       login: 'admin',
       password: 'zabbix',
-      template: 'Template OS Linux',
-      host_metadata: %w(ap db)
+      template: 'Template OS Linux'
     )
   end
 end
