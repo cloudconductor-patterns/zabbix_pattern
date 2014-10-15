@@ -7,7 +7,7 @@ version:          "0.0.1"
 url:              "https://github.com/cloudconductor-patterns/zabbix_pattern"
 
 type:      "optional"
-depends:   []
+depends:   [zabbix]
 conflicts: []
 
 supports:
