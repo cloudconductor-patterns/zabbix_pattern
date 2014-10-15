@@ -1,0 +1,12 @@
+
+require 'rake'
+require 'rspec/core/rake_task'
+
+task :spec, 'role', 'phase'
+
+task :spec do |_t, args|
+  desc "Run serverspec to #{args['role']}"
+  RSpec::Core::RakeTask.new do |t|
+    t.pattern = 'spec/' + args['role'] + '/*_' + args['phase'] + '_spec.rb'
+  end
+end
