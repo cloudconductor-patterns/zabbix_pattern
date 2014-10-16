@@ -12,7 +12,7 @@ describe 'zabbix_part::all_configure' do
         "roles" => ""
       }
       node.set['cloudconductor']['servers']['zbx_svr'] = {
-        "roles" => "optional",
+        "roles" => "monitoring",
         "private_ip" => "127.0.0.1"
       }
       node.set['zabbix_part']['agent']['include_dir']\

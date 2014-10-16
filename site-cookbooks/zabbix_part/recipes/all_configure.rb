@@ -17,7 +17,7 @@ node['cloudconductor']['servers'].each do |svr_name, svr|
   if my_name == svr_name
     default['zabbix_part']['agent']['HostMetadata'] = "#{svr['roles']}"
   end
-  if svr['role'] == 'optional' then
+  if svr['roles'] == 'monitoring' then
     my_ary = "#{svr['private_ip']}"
     node.default.zabbix.agent.servers << my_ary
     node.default.zabbix.agent.servers_active << my_ary
