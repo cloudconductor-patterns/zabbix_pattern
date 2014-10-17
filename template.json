@@ -75,7 +75,7 @@
         "KeyName" : { "Ref" : "KeyName" },
         "NetworkInterfaces" : [{
            "DeviceIndex" : "0",
-           "NetworkInterfaceId" : { "Ref" : "monitoringNetworkInterface" }
+           "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
         }],
         "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
           "#!/bin/sh -v\n",
@@ -109,7 +109,7 @@
     "MonitoringNetworkInterface" : {
       "Type" : "AWS::EC2::NetworkInterface",
       "Properties" : {
-        "GroupSet" : [{"Ref": "MonitoringSecurityGroup"}],
+        "GroupSet" : [{"Ref" : "SharedSecurityGroup"}, {"Ref" : "MonitoringSecurityGroup"}],
         "SubnetId" : { "Ref" : "SubnetId" }
       }
     },
@@ -133,10 +133,7 @@
         "VpcId" : { "Ref" : "VpcId" },
         "SecurityGroupIngress" : [
           {"IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : { "Ref" : "SSHLocation" }},
-          {"IpProtocol" : "tcp", "FromPort" : "10051", "ToPort" : "10051", "CidrIp" : "10.0.0.0/16"},
-          {"IpProtocol" : "tcp", "FromPort" : "7946", "ToPort" : "7946", "CidrIp" : "10.0.0.0/16"},
-          {"IpProtocol" : "tcp", "FromPort" : "8500", "ToPort" : "8500", "CidrIp" : { "Ref" : "CloudConductorLocation" }},
-          {"IpProtocol" : "tcp", "FromPort" : "8300", "ToPort" : "8302", "CidrIp" : "10.0.0.0/16"}
+          {"IpProtocol" : "tcp", "FromPort" : "10051", "ToPort" : "10051", "CidrIp" : "10.0.0.0/16"}
         ]
       }
     },
