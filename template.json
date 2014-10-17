@@ -132,7 +132,6 @@
         "GroupDescription" : "Enable SSH access, HTTP access via port 80, Zabbix-agent access",
         "VpcId" : { "Ref" : "VpcId" },
         "SecurityGroupIngress" : [
-          {"IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : { "Ref" : "SSHLocation" }},
           {"IpProtocol" : "tcp", "FromPort" : "10051", "ToPort" : "10051", "CidrIp" : "10.0.0.0/16"}
         ]
       }
