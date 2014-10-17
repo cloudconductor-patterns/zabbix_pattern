@@ -102,6 +102,7 @@ module ZabbixPattern
       cookbooks_dir = File.join(@pattern_dir, 'cookbooks')
       site_cookbooks_dir = File.join(@pattern_dir, 'site-cookbooks')
       File.open(chefsolo_config_file, 'w') do |file|
+        file.write("ssl_verify_mode :verify_peer\n")
         file.write("role_path '#{roles_dir}'\n")
         file.write("log_level :info\n")
         file.write("log_location '#{chefsolo_log_file}'\n")
