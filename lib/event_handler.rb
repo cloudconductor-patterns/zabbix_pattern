@@ -108,7 +108,7 @@ module ZabbixPattern
         file.write("log_location '#{chefsolo_log_file}'\n")
         file.write("file_cache_path '#{filecache_dir}'\n")
         file.write("cookbook_path ['#{cookbooks_dir}', '#{site_cookbooks_dir}']\n")
-        file.write("yum_timeout '3600'\n")
+        file.write("yum_timeout 3600\n")
       end
     end
 
