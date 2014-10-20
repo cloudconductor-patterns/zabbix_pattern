@@ -129,9 +129,10 @@
     "MonitoringSecurityGroup" : {
       "Type" : "AWS::EC2::SecurityGroup",
       "Properties" : {
-        "GroupDescription" : "Enable SSH access, HTTP access via port 80, Zabbix-agent access",
+        "GroupDescription" : "Enable HTTP access via port 80, Zabbix-agent access",
         "VpcId" : { "Ref" : "VpcId" },
         "SecurityGroupIngress" : [
+          {"IpProtocol" : "tcp", "FromPort" : "80", "ToPort" : "80", "CidrIp" : "0.0.0.0/0"},
           {"IpProtocol" : "tcp", "FromPort" : "10051", "ToPort" : "10051", "CidrIp" : "10.0.0.0/16"}
         ]
       }
