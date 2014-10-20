@@ -27,6 +27,16 @@ else
   return
 end
 
+original_http_proxy = ENV['http_proxy']
+original_https_proxy = ENV['https_proxy']
+
+ruby_block 'unset_proxy' do
+  block do
+    ENV['http_proxy'] = nil
+    ENV['https_proxy'] = nil
+  end
+end
+
 zabbix_part_import_template 'zbx_template.xml' do
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
   login  zabbix_server['zabbix']['web']['login']
@@ -40,4 +50,11 @@ zabbix_part_auto_registration 'create auto_registration action' do
   login       zabbix_server['zabbix']['web']['login']
   password    zabbix_server['zabbix']['web']['password']
   template    node['zabbix_part']['auto_registration']['template']
+end
+
+ruby_block 'set_proxy' do
+  block do
+    ENV['http_proxy'] = original_http_proxy
+    ENV['https_proxy'] = original_https_proxy
+  end
 end
