@@ -7,17 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 #
-# Get Own hostname
-my_name = node['hostname']
-Chef::Log.info "My name is #{node['hostname']}"
 
 # Set attribute data
 node['cloudconductor']['servers'].each do |svr_name, svr|
   Chef::Log.info "Set attribute data "
-  if my_name == svr_name
+  if node['hostname'] == svr_name
     node.default.zabbix_part.agent.HostMetadata = "#{svr['roles']}"
   end
-  if svr['roles'] == 'monitoring' then
+  if svr['roles'].include? 'monitoring' then
     my_ary = "#{svr['private_ip']}"
     node.default.zabbix.agent.servers << my_ary
     node.default.zabbix.agent.servers_active << my_ary
