@@ -27,6 +27,11 @@ else
   return
 end
 
+ruby_block 'restart_apache2' do
+  block {}
+  notifies :restart, 'service[apache2]', :immediately
+end
+
 original_http_proxy = ENV['http_proxy']
 original_https_proxy = ENV['https_proxy']
 
