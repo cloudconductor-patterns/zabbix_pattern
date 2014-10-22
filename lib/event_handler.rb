@@ -17,9 +17,9 @@ require 'yaml'
 require 'json'
 require 'active_support'
 require 'cloud_conductor_utils/consul'
-require_relative './logger'
+require_relative './pattern_logger'
 
-module ZabbixPattern
+module CloudConductorPattern
   # rubocop: disable ClassLength
   class EventHandler
     def initialize(node_role)
@@ -29,7 +29,7 @@ module ZabbixPattern
       log_dir = File.join(@pattern_dir, 'logs')
       FileUtils.mkdir_p(log_dir) unless Dir.exist?(log_dir)
       log_filename = File.join(log_dir, 'event-handler.log')
-      @logger = ZabbixPattern::Logger.logger(log_filename)
+      @logger = CloudConductorPattern::PatternLogger.logger(log_filename)
       @roles = node_role.split(',')
     end
 
@@ -108,7 +108,6 @@ module ZabbixPattern
         file.write("log_location '#{chefsolo_log_file}'\n")
         file.write("file_cache_path '#{filecache_dir}'\n")
         file.write("cookbook_path ['#{cookbooks_dir}', '#{site_cookbooks_dir}']\n")
-        file.write("yum_timeout 3600\n")
       end
     end
 
@@ -148,5 +147,5 @@ end
 if __FILE__ == $PROGRAM_NAME
   role = ARGV[0]
   event = ARGV[1]
-  ZabbixPattern::EventHandler.new(role).execute(event)
+  CloudConductorPattern::EventHandler.new(role).execute(event)
 end

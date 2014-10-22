@@ -14,8 +14,8 @@
 # limitations under the License.
 require 'logger'
 
-module ZabbixPattern
-  class Logger
+module CloudConductorPattern
+  class PatternLogger
     def self.logger(log_filename)
       logger = ::Logger.new(log_filename)
       logger.formatter = proc do |severity, datetime, _progname, message|
