@@ -143,8 +143,7 @@
         "IpProtocol": "tcp",
         "FromPort": "10050",
         "ToPort": "10050",
-        "CidrIp": "10.0.0.0/16",
-        "SourceSecurityGroupId": { "Ref" : "SharedSecurityGroup" },
+        "SourceSecurityGroupId": { "Ref" : "MonitoringSecurityGroup" },
         "GroupId": { "Ref" : "SharedSecurityGroup" }
       }
     },
