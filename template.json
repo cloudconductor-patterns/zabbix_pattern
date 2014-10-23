@@ -26,19 +26,19 @@
       "Default" : "t2.small"
     },
     "monitoringImageId" : {
-      "Description" : "MonitoringServer Image Id. This parameter is automatically filled by CloudConductor.",
+      "Description" : "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor.",
       "Type" : "String"
     },
     "VpcId" : {
-      "Description" : "The Vpc Id which is used by platform pattern.",
+      "Description" : "[computed] The Vpc Id which is used by platform pattern.",
       "Type" : "String"
     },
     "SubnetId" : {
-      "Description" : "The Subnet Id which is used by platform pattern.",
+      "Description" : "[computed] The Subnet Id which is used by platform pattern.",
       "Type" : "String"
     },
     "ClusterAddress" : {
-      "Description" : "Private IP Address to join cluster.",
+      "Description" : "[computed] Private IP Address to join cluster.",
       "Type" : "String",
       "MinLength": "7",
       "MaxLength": "15",
@@ -46,11 +46,11 @@
       "ConstraintDescription": "must be a valid IP address."
     },
     "SharedSecurityGroup" : {
-      "Description" : "The SecurityGroup which is used by platform pattern.",
+      "Description" : "[computed] The SecurityGroup which is used by platform pattern.",
       "Type" : "String"
     },
     "CloudConductorLocation" : {
-      "Description" : "The IP address range of CloudConductor server to enable serf rpc access to frontend instance. This parameter is automatically filled by CloudConductor.",
+      "Description" : "The IP address range of CloudConductor server to enable serf rpc access to frontend instance.",
       "Type" : "String",
       "MinLength": "9",
       "MaxLength": "18",
