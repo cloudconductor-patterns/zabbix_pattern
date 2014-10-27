@@ -15,9 +15,12 @@ end
 group :test do
   gem 'rspec'
   gem 'rspec-mocks'
+  gem 'rspec_junit_formatter'
   gem 'guard-rspec', require: false
   gem 'spork'
   gem 'guard-spork'
   gem 'factory_girl'
   gem 'cloud_conductor_utils', git: 'https://github.com/cloudconductor/cloud_conductor_utils.git', branch: 'develop'
+  gem 'chefspec'
+  gem 'chef'
 end
