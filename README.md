@@ -34,7 +34,7 @@ Please see the attribute files if you want to know what kind of attributes are i
 Mandatory parameters
 --------------------
 
-#Nothing.
+Nothing.
 
 Example of parameters
 ---------------------
