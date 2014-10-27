@@ -1,6 +1,6 @@
 {
   "name": "all_configure",
-  "description": "Install zabbix-agent",
+  "description": "Setups zabbix-agent",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
