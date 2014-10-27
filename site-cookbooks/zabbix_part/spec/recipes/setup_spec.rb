@@ -6,9 +6,7 @@ describe 'zabbix_part::setup' do
       cookbook_path: %w(site-cookbooks cookbooks),
       platform:      'centos',
       version:       '6.5'
-    ) do |node|
-      node.automatic['fqdn'] = 'server01.example.com'
-    end.converge(described_recipe)
+    ).converge(described_recipe)
   end
 
   before do
@@ -54,7 +52,7 @@ describe 'zabbix_part::setup' do
       :import,
       'zbx_template.xml'
     ).with(
-      zabbix_fqdn: 'server01.example.com',
+      zabbix_fqdn: 'localhost',
       login: 'admin',
       password: 'zabbix',
       source: 'zbx_template.xml'
@@ -67,7 +65,7 @@ describe 'zabbix_part::setup' do
       :create,
       'create auto_registration action'
     ).with(
-      zabbix_fqdn: 'server01.example.com',
+      zabbix_fqdn: 'localhost',
       login: 'admin',
       password: 'zabbix',
       template: 'Template OS Linux'
