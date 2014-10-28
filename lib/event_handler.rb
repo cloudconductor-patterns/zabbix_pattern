@@ -66,6 +66,7 @@ module CloudConductorPattern
     end
 
     def execute_serverspec
+      has_error = false
       @roles.unshift('all')
       events = deploy? ? %w( configure deploy ) : %w( configure )
       spec_root_dir = File.join(@pattern_dir, 'serverspec')
@@ -80,12 +81,14 @@ module CloudConductorPattern
               @logger.info('finished successfully.')
             else
               @logger.error('finished abnormally. ')
+              has_error = true
             end
           else
             @logger.info("spec file [#{spec_file}] does not exist. skipped.")
           end
         end
       end
+      raise if has_error
     end
 
     def deploy?
