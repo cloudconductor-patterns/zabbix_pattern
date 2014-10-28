@@ -4,16 +4,16 @@ require 'chefspec'
 describe 'zabbix_part::all_configure' do
   let(:chef_run) do
     ChefSpec::Runner.new(
-      cookbook_path: ['cookbooks', 'site-cookbooks'],
+      cookbook_path: %w(cookbooks site-cookbooks),
       platform: 'centos',
       version: '6.5'
     ) do |node|
       node.set['cloudconductor']['servers']['zbx_agt'] = {
-        "roles" => ""
+        roles: ''
       }
       node.set['cloudconductor']['servers']['zbx_svr'] = {
-        "roles" => "monitoring",
-        "private_ip" => "127.0.0.1"
+        roles: 'monitoring',
+        private_ip: '127.0.0.1'
       }
       node.set['zabbix_part']['agent']['include_dir']\
       = '/etc/zabbix/agent_include'
