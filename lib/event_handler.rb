@@ -65,6 +65,7 @@ module CloudConductorPattern
       end
     end
 
+    # rubocop: disable MethodLength
     def execute_serverspec
       has_error = false
       @roles.unshift('all')
@@ -88,8 +89,9 @@ module CloudConductorPattern
           end
         end
       end
-      raise if has_error
+      fail if has_error
     end
+    # rubocop: enable MethodLength
 
     def deploy?
       parameters = CloudConductorUtils::Consul.read_parameters
