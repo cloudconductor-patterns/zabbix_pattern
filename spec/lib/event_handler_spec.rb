@@ -14,6 +14,7 @@
 # limitations under the License.
 require_relative '../../lib/event_handler.rb'
 
+pattern_path = File.expand_path('../../../', __FILE__)
 describe CloudConductorPattern::EventHandler do
   before do
     allow(Dir).to receive(:exist?).and_return(true)
@@ -35,7 +36,7 @@ describe CloudConductorPattern::EventHandler do
       @message = message
     end
     allow(CloudConductorPattern::PatternLogger).to receive(:logger).with(
-      '/opt/cloudconductor/patterns/zabbix_pattern/logs/event-handler.log'
+      "#{pattern_path}/logs/event-handler.log"
     ).and_return(dummy_logger)
   end
 
@@ -56,7 +57,7 @@ describe CloudConductorPattern::EventHandler do
       end
       expect(event_handler.logger).not_to be_nil
       expect(event_handler.pattern_name).to eq('zabbix_pattern')
-      expect(event_handler.pattern_dir).to eq('/opt/cloudconductor/patterns/zabbix_pattern')
+      expect(event_handler.pattern_dir).to eq("#{pattern_path}")
       expect(event_handler.roles).to eq(%w(web ap db))
     end
   end
@@ -78,16 +79,16 @@ describe CloudConductorPattern::EventHandler do
   describe '#execute_chef' do
     it 'executes chef' do
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/roles/web_setup.json'
+        "#{pattern_path}/roles/web_setup.json"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/roles/ap_setup.json'
+        "#{pattern_path}/roles/ap_setup.json"
       ).and_return(false)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/roles/db_setup.json'
+        "#{pattern_path}/roles/db_setup.json"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/roles/all_setup.json'
+        "#{pattern_path}/roles/all_setup.json"
       ).and_return(false)
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
       allow(event_handler).to receive(:create_chefsolo_config_file).with('web')
@@ -115,22 +116,22 @@ describe CloudConductorPattern::EventHandler do
         @command
       end
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/web/web_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/ap/ap_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/ap/ap_configure_spec.rb"
       ).and_return(false)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/db/db_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/db/db_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/all/all_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/all/all_configure_spec.rb"
       ).and_return(false)
       event_handler.send(:execute_serverspec)
       expect(event_handler.command).to eq(
         [
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[web,configure]',
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[db,configure]'
+          "cd #{pattern_path}/serverspec; rake spec[web,configure]",
+          "cd #{pattern_path}/serverspec; rake spec[db,configure]"
         ]
       )
     end
@@ -146,36 +147,36 @@ describe CloudConductorPattern::EventHandler do
         @command
       end
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/web/web_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/ap/ap_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/ap/ap_configure_spec.rb"
       ).and_return(false)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/db/db_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/db/db_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/all/all_configure_spec.rb'
+        "#{pattern_path}/serverspec/spec/all/all_configure_spec.rb"
       ).and_return(false)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/web/web_deploy_spec.rb'
+        "#{pattern_path}/serverspec/spec/web/web_deploy_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/ap/ap_deploy_spec.rb'
+        "#{pattern_path}/serverspec/spec/ap/ap_deploy_spec.rb"
       ).and_return(false)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/db/db_deploy_spec.rb'
+        "#{pattern_path}/serverspec/spec/db/db_deploy_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/serverspec/spec/all/all_deploy_spec.rb'
+        "#{pattern_path}/serverspec/spec/all/all_deploy_spec.rb"
       ).and_return(false)
       event_handler.send(:execute_serverspec)
       expect(event_handler.command).to eq(
         [
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[web,configure]',
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[web,deploy]',
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[db,configure]',
-          'cd /opt/cloudconductor/patterns/zabbix_pattern/serverspec; rake spec[db,deploy]'
+          "cd #{pattern_path}/serverspec; rake spec[web,configure]",
+          "cd #{pattern_path}/serverspec; rake spec[web,deploy]",
+          "cd #{pattern_path}/serverspec; rake spec[db,configure]",
+          "cd #{pattern_path}/serverspec; rake spec[db,deploy]"
         ]
       )
     end
@@ -207,14 +208,14 @@ describe CloudConductorPattern::EventHandler do
     it 'creates config file' do
       dummy_file = Object.new
       allow(dummy_file).to receive(:write).with("ssl_verify_mode :verify_peer\n")
-      allow(dummy_file).to receive(:write).with("role_path '/opt/cloudconductor/patterns/zabbix_pattern/roles'\n")
+      allow(dummy_file).to receive(:write).with("role_path '#{pattern_path}/roles'\n")
       allow(dummy_file).to receive(:write).with("log_level :info\n")
-      allow(dummy_file).to receive(:write).with("log_location '/opt/cloudconductor/patterns/zabbix_pattern/logs/zabbix_pattern_web_chef-solo.log'\n")
-      allow(dummy_file).to receive(:write).with("file_cache_path '/opt/cloudconductor/patterns/zabbix_pattern/tmp/cache'\n")
-      allow(dummy_file).to receive(:write).with("cookbook_path ['/opt/cloudconductor/patterns/zabbix_pattern/cookbooks', '/opt/cloudconductor/patterns/zabbix_pattern/site-cookbooks']\n")
+      allow(dummy_file).to receive(:write).with("log_location '#{pattern_path}/logs/zabbix_pattern_web_chef-solo.log'\n")
+      allow(dummy_file).to receive(:write).with("file_cache_path '#{pattern_path}/tmp/cache'\n")
+      allow(dummy_file).to receive(:write).with("cookbook_path ['#{pattern_path}/cookbooks', '#{pattern_path}/site-cookbooks']\n")
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
       allow(File).to receive(:open).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/solo.rb',
+        "#{pattern_path}/solo.rb",
         'w'
       ).and_yield(dummy_file)
       event_handler.send(:create_chefsolo_config_file, 'web')
@@ -256,7 +257,7 @@ describe CloudConductorPattern::EventHandler do
         ]
       }
       allow(File).to receive(:write).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/node.json',
+        "#{pattern_path}/node.json",
         expected_data.to_json
       )
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
@@ -312,12 +313,12 @@ describe CloudConductorPattern::EventHandler do
         ]
       }
       allow(File).to receive(:write).with(
-        '/opt/cloudconductor/patterns/zabbix_pattern/node.json',
+        "#{pattern_path}/node.json",
         expected_data.to_json
       )
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
       result = event_handler.send(:create_chefsolo_node_file, 'web', 'configure')
-      expect(result).to eq('/opt/cloudconductor/patterns/zabbix_pattern/node.json')
+      expect(result).to eq("#{pattern_path}/node.json")
     end
   end
 
@@ -335,8 +336,8 @@ describe CloudConductorPattern::EventHandler do
       event_handler.send(:run_chefsolo)
       expect(event_handler.command).to eq(
         [
-          'cd /opt/cloudconductor/patterns/zabbix_pattern; berks vendor ./cookbooks',
-          'chef-solo -c /opt/cloudconductor/patterns/zabbix_pattern/solo.rb -j /opt/cloudconductor/patterns/zabbix_pattern/node.json'
+          "cd #{pattern_path}; berks vendor ./cookbooks",
+          "chef-solo -c #{pattern_path}/solo.rb -j #{pattern_path}/node.json"
         ]
       )
     end

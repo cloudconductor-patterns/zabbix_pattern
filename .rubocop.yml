@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - cookbooks/**/*
+    - vendor/**/*
 
 LineLength:
   Max: 130
