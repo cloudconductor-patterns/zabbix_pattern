@@ -3,7 +3,7 @@ require 'chefspec'
 
 describe 'zabbix_part::all_configure' do
   let(:chef_run) do
-    ChefSpec::Runner.new(
+    ChefSpec::SoloRunner.new(
       cookbook_path: %w(cookbooks site-cookbooks),
       platform: 'centos',
       version: '6.5'
