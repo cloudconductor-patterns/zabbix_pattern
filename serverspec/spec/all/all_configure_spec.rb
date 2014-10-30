@@ -4,7 +4,7 @@ describe service('zabbix_agentd') do
   it { should be_enabled }
 end
 
-describe port(10050) do
+describe port(10_050) do
   it { should be_listening.with('tcp') }
 end
 

@@ -19,22 +19,7 @@ describe CloudConductorPattern::EventHandler do
   before do
     allow(Dir).to receive(:exist?).and_return(true)
     allow(FileUtils).to receive(:mkdir_p)
-    dummy_logger = Object.new
-    def dummy_logger.formatter=(prc)
-      @prc = prc
-    end
-    def dummy_logger.formatter
-      @prc
-    end
-    def dummy_logger.info(message)
-      @message = message
-    end
-    def dummy_logger.warn(message)
-      @message = message
-    end
-    def dummy_logger.error(message)
-      @message = message
-    end
+    dummy_logger = double(:logger, info: nil)
     allow(CloudConductorPattern::PatternLogger).to receive(:logger).with(
       "#{pattern_path}/logs/event-handler.log"
     ).and_return(dummy_logger)
@@ -43,22 +28,10 @@ describe CloudConductorPattern::EventHandler do
   describe '#initialize' do
     it 'creates and returns new instance' do
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
-      def event_handler.logger
-        @logger
-      end
-      def event_handler.pattern_name
-        @pattern_name
-      end
-      def event_handler.pattern_dir
-        @pattern_dir
-      end
-      def event_handler.roles
-        @roles
-      end
-      expect(event_handler.logger).not_to be_nil
-      expect(event_handler.pattern_name).to eq('zabbix_pattern')
-      expect(event_handler.pattern_dir).to eq("#{pattern_path}")
-      expect(event_handler.roles).to eq(%w(web ap db))
+      expect(event_handler.instance_variable_get('@logger')).not_to be_nil
+      expect(event_handler.instance_variable_get('@pattern_name')).to eq('zabbix_pattern')
+      expect(event_handler.instance_variable_get('@pattern_dir')).to eq("#{pattern_path}")
+      expect(event_handler.instance_variable_get('@roles')).to eq(%w(web ap db))
     end
   end
 
@@ -108,13 +81,7 @@ describe CloudConductorPattern::EventHandler do
     it 'executes serverspec in configure phase' do
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
       allow(event_handler).to receive(:deploy?).and_return(false)
-      def event_handler.system(command)
-        @command = [] if @command == nil
-        @command << command
-      end
-      def event_handler.command
-        @command
-      end
+      allow(File).to receive(:exist?).and_return(false)
       allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
@@ -127,25 +94,17 @@ describe CloudConductorPattern::EventHandler do
       allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/all/all_configure_spec.rb"
       ).and_return(false)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[web,configure]").and_return(true)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[db,configure]").and_return(true)
       event_handler.send(:execute_serverspec)
-      expect(event_handler.command).to eq(
-        [
-          "cd #{pattern_path}/serverspec; rake spec[web,configure]",
-          "cd #{pattern_path}/serverspec; rake spec[db,configure]"
-        ]
-      )
     end
 
     it 'executes serverspec in deploy phase' do
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
       allow(event_handler).to receive(:deploy?).and_return(true)
-      def event_handler.system(command)
-        @command = [] if @command == nil
-        @command << command
-      end
-      def event_handler.command
-        @command
-      end
+      allow(File).to receive(:exist?).and_return(false)
       allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
@@ -170,15 +129,15 @@ describe CloudConductorPattern::EventHandler do
       allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/all/all_deploy_spec.rb"
       ).and_return(false)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[web,configure]").and_return(true)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[web,deploy]").and_return(true)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[db,configure]").and_return(true)
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}/serverspec; rake spec[db,deploy]").and_return(true)
       event_handler.send(:execute_serverspec)
-      expect(event_handler.command).to eq(
-        [
-          "cd #{pattern_path}/serverspec; rake spec[web,configure]",
-          "cd #{pattern_path}/serverspec; rake spec[web,deploy]",
-          "cd #{pattern_path}/serverspec; rake spec[db,configure]",
-          "cd #{pattern_path}/serverspec; rake spec[db,deploy]"
-        ]
-      )
     end
   end
 
@@ -325,21 +284,11 @@ describe CloudConductorPattern::EventHandler do
   describe '#run_chefsolo' do
     it 'runs chef-solo' do
       event_handler = CloudConductorPattern::EventHandler.new('web,ap,db')
-      def event_handler.system(command)
-        @command = [] if @command == nil
-        @command << command
-        true
-      end
-      def event_handler.command
-        @command
-      end
+      expect(event_handler).to receive(:system)
+        .with("cd #{pattern_path}; berks vendor ./cookbooks").and_return(true).ordered
+      expect(event_handler).to receive(:system)
+        .with("chef-solo -c #{pattern_path}/solo.rb -j #{pattern_path}/node.json").and_return(true).ordered
       event_handler.send(:run_chefsolo)
-      expect(event_handler.command).to eq(
-        [
-          "cd #{pattern_path}; berks vendor ./cookbooks",
-          "chef-solo -c #{pattern_path}/solo.rb -j #{pattern_path}/node.json"
-        ]
-      )
     end
   end
 end

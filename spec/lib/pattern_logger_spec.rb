@@ -17,18 +17,10 @@ require_relative '../../lib/pattern_logger.rb'
 describe CloudConductorPattern::PatternLogger do
   describe '#logger' do
     it 'creates and returns the logger instance' do
-      dummy_logger = Object.new
-      def dummy_logger.formatter=(prc)
-        @prc = prc
-      end
-      def dummy_logger.formatter
-        @prc
-      end
-      allow(Logger).to receive(:new).with(
-        'testlog.log'
-      ).and_return(dummy_logger)
+      dummy_logger = double(:logger)
+      allow(Logger).to receive(:new).with('testlog.log').and_return(dummy_logger)
+      expect(dummy_logger).to receive('formatter=').with(instance_of(Proc))
       logger = CloudConductorPattern::PatternLogger.logger('testlog.log')
-      expect(dummy_logger.formatter).not_to be_nil
       expect(logger).not_to be_nil
     end
   end
