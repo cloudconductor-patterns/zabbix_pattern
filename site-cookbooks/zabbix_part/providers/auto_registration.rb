@@ -24,11 +24,8 @@ action :create do
       )
     end
 
-    template_ids = Zabbix::API.find_template_ids(connection,
-                                                 new_resource.template)
-    if template_ids.empty?
-      Chef::Application.fatal! "Could not find a template named #{new_resource.template}"
-    end
+    template_ids = Zabbix::API.find_template_ids(connection, new_resource.template)
+    Chef::Application.fatal! "Could not find a template named #{new_resource.template}" if template_ids.empty?
 
     params = {
       name: new_resource.action_name || new_resource.name,
@@ -54,11 +51,9 @@ action :create do
 
     new_resource.host_metadata.each do |metadata|
       params[:conditions].push(
-        {
-          conditiontype: 24,
-          operator: 2,
-          value: metadata
-        }
+        conditiontype: 24,
+        operator: 2,
+        value: metadata
       )
     end
 
