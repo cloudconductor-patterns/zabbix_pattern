@@ -86,14 +86,8 @@ describe CloudConductorPattern::EventHandler do
         "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/ap/ap_configure_spec.rb"
-      ).and_return(false)
-      allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/db/db_configure_spec.rb"
       ).and_return(true)
-      allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/all/all_configure_spec.rb"
-      ).and_return(false)
       expect(event_handler).to receive(:system)
         .with("cd #{pattern_path}/serverspec; rake spec[web,configure]").and_return(true)
       expect(event_handler).to receive(:system)
@@ -109,26 +103,14 @@ describe CloudConductorPattern::EventHandler do
         "#{pattern_path}/serverspec/spec/web/web_configure_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/ap/ap_configure_spec.rb"
-      ).and_return(false)
-      allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/db/db_configure_spec.rb"
       ).and_return(true)
-      allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/all/all_configure_spec.rb"
-      ).and_return(false)
       allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/web/web_deploy_spec.rb"
       ).and_return(true)
       allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/ap/ap_deploy_spec.rb"
-      ).and_return(false)
-      allow(File).to receive(:exist?).with(
         "#{pattern_path}/serverspec/spec/db/db_deploy_spec.rb"
       ).and_return(true)
-      allow(File).to receive(:exist?).with(
-        "#{pattern_path}/serverspec/spec/all/all_deploy_spec.rb"
-      ).and_return(false)
       expect(event_handler).to receive(:system)
         .with("cd #{pattern_path}/serverspec; rake spec[web,configure]").and_return(true)
       expect(event_handler).to receive(:system)
