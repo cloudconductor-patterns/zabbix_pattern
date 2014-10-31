@@ -5,6 +5,8 @@ AllCops:
 
 LineLength:
   Max: 130
+  Exclude:
+    - site-cookbooks/zabbix_part/resources/auto_registration.rb
 
 MethodLength:
   Max: 20
