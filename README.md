@@ -75,6 +75,6 @@ Contact
 
 For more information: <http://cloudconductor.org/>
 
-Report issues and requests: <https://github.com/cloudconductor/core/issues>
+Report issues and requests: <https://github.com/cloudconductor-patterns/zabbix_pattern/issues>
 
 Send feedback to: <ccndctr@gmail.com>
