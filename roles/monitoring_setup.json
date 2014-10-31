@@ -1,0 +1,9 @@
+{
+  "name": "monitoring_setup",
+  "description": "Setups zabbix server",
+  "chef_type": "role",
+  "json_class":"Chef::Role",
+  "run_list": [
+    "recipe[zabbix_part::setup]"
+  ]
+}

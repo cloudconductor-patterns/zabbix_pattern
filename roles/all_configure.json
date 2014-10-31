@@ -1,0 +1,9 @@
+{
+  "name": "all_configure",
+  "description": "Setups zabbix-agent",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[zabbix_part::all_configure]"
+  ]
+}

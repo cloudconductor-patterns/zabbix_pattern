@@ -1,0 +1,9 @@
+{
+    "name": "init_setup",
+    "description": "Initializes fundamental environment",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "run_list" : [
+        "recipe[cloudconductor_init::setup]"
+    ]
+}
