@@ -2,54 +2,114 @@ require_relative '../spec_helper'
 require 'chefspec'
 
 describe 'zabbix_part::all_configure' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(
-      cookbook_path: %w(cookbooks site-cookbooks),
-      platform: 'centos',
-      version: '6.5'
-    ) do |node|
-      node.set['cloudconductor']['servers']['zbx_agt'] = {
-        roles: ''
-      }
-      node.set['cloudconductor']['servers']['zbx_svr'] = {
-        roles: 'monitoring',
-        private_ip: '127.0.0.1'
-      }
-      node.set['zabbix_part']['agent']['include_dir']\
-      = '/etc/zabbix/agent_include'
-      node.set['zabbix_part']['agent']['include_conf_name']\
-      = 'HostMetadata.conf'
-      node.set['zabbix_part']['agent']['HostMetadata'] = ''
-    end.converge 'zabbix_part::all_configure'
+  let(:chef_run) { ChefSpec::SoloRunner.new }
+
+  before do
+    chef_run.node.automatic[:hostname] = 'zbx_svr'
+    chef_run.node.set['cloudconductor']['servers']['zbx_svr'] = {
+      roles: 'monitoring',
+      private_ip: '127.0.0.1'
+    }
+    chef_run.converge(described_recipe)
   end
 
-  # Create default_root
-  it 'Create Directory' do
+  it 'zabbix cookbook attribute is a excepting case of windows platform' do
+    expect(chef_run.node[:zabbix][:etc_dir]).to eq('/etc/zabbix')
+    expect(chef_run.node[:zabbix][:agent][:include_dir]).to eq('/etc/zabbix/agent_include')
+  end
+
+  it 'local servers role is put on attribute of zabbix_part.agent.hostmetadata' do
+    expect(chef_run.node[:zabbix_part][:agent][:HostMetadata]).to eq('monitoring')
+  end
+
+  it 'only zabbix servers private ip is put on attribute of servers and servers_active' do
+    chef_run.node.set['cloudconductor']['servers']['ap_svr'] = {
+      roles: 'ap',
+      private_ip: '127.0.0.2'
+    }
+    chef_run.converge(described_recipe)
+
+    expect(chef_run.node[:zabbix][:agent][:servers]).to match_array ['127.0.0.1']
+    expect(chef_run.node[:zabbix][:agent][:servers_active]).to match_array ['127.0.0.1']
+  end
+
+  it 'create a config directory of including for zabbix agent' do
     expect(chef_run).to create_directory('/etc/zabbix/agent_include').with(
-      owner: 'root', group: 'root', mode: '755'
+      owner: 'root',
+      group: 'root',
+      mode: '755'
     )
   end
 
-  # Create HostMetadata.conf for zabbix_agentd from template
-  let(:template) do
-    chef_run.template('/etc/zabbix/agent_include/HostMetadata.conf')
-  end
-  it 'Create zabbix agent config file from template' do
-    expect(chef_run).to create_template(
-      '/etc/zabbix/agent_include/HostMetadata.conf'
-    ).with(mode: '755')
-  end
-  it 'Check HostMetadata.conf' do
-    expect(chef_run).to render_file('/etc/zabbix/agent_include/HostMetadata.conf').with_content(/^HostMetadata=/)
+  it 'create a including config file for zabbix agent' do
+    chef_run.node.set['zabbix_part']['agent']['include_conf_name'] = 'host_metadata.conf'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_template('/etc/zabbix/agent_include/host_metadata.conf').with(
+      source: 'agentd_include.conf.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
   end
 
-  # Include recipe yum-epel
-  it 'Include recipe for yum-epel' do
+  it 'local server of the role is written as a host metadata to include config file' do
+    chef_run.node.set['zabbix_part']['agent']['include_conf_name'] = 'host_metadata.conf'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to render_file('/etc/zabbix/agent_include/host_metadata.conf').with_content(/^HostMetadata=monitoring/)
+  end
+
+  it 'include yum-epel recipe' do
     expect(chef_run).to include_recipe 'yum-epel'
   end
 
-  # Include recipe zabbix::agent
-  it 'Include recipe for zabbix::agent' do
+  it 'include zabbix::agent recipe' do
     expect(chef_run).to include_recipe 'zabbix::agent'
+  end
+
+  describe 'multiple of zabbix server is available' do
+    it 'only zabbix servers private ip is put on attribute of servers and servers_active' do
+      chef_run.node.set['cloudconductor']['servers']['ap_svr'] = {
+        roles: 'ap',
+        private_ip: '127.0.0.2'
+      }
+      chef_run.node.set['cloudconductor']['servers']['zbx_svr2'] = {
+        roles: 'monitoring',
+        private_ip: '127.0.0.3'
+      }
+      chef_run.converge(described_recipe)
+
+      expect(chef_run.node[:zabbix][:agent][:servers]).to match_array ['127.0.0.1', '127.0.0.3']
+      expect(chef_run.node[:zabbix][:agent][:servers_active]).to match_array ['127.0.0.1', '127.0.0.3']
+    end
+  end
+
+  describe 'platform is windows' do
+    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') }
+
+    before do
+      allow(ENV).to receive(:[])
+      allow(ENV).to receive(:[]).with('ProgramFiles').and_return('C:\Program Files')
+      allow(ENV).to receive(:[]).with('ProgramFiles(x86)').and_return('C:\Program Files (x86)')
+      chef_run.converge(described_recipe)
+    end
+
+    it 'zabbix cookbook attribute is the case of windows platform' do
+      expect(chef_run.node[:zabbix][:etc_dir]).to eq('C:\\Program Files/Zabbix Agent')
+      expect(chef_run.node[:zabbix][:agent][:include_dir]).to eq('C:\\Program Files/Zabbix Agent/agent_include')
+    end
+
+    it 'create a config directory of include for zabbix agent' do
+      expect(chef_run).to create_directory('C:\\Program Files/Zabbix Agent/agent_include')
+    end
+
+    it 'create a including config file for zabbix agent' do
+      chef_run.node.set['zabbix_part']['agent']['include_conf_name'] = 'host_metadata.conf'
+      chef_run.converge(described_recipe)
+
+      expect(chef_run).to create_template('C:\\Program Files/Zabbix Agent/agent_include/host_metadata.conf')
+        .with(source: 'agentd_include.conf.erb')
+    end
   end
 end
