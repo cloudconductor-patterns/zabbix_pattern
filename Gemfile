@@ -23,4 +23,6 @@ group :test do
   gem 'cloud_conductor_utils', git: 'https://github.com/cloudconductor/cloud_conductor_utils.git', branch: 'develop'
   gem 'chefspec'
   gem 'chef'
+  gem 'berkshelf'
+  gem 'foodcritic'
 end
