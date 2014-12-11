@@ -84,32 +84,4 @@ describe 'zabbix_part::all_configure' do
       expect(chef_run.node[:zabbix][:agent][:servers_active]).to match_array ['127.0.0.1', '127.0.0.3']
     end
   end
-
-  describe 'platform is windows' do
-    let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') }
-
-    before do
-      allow(ENV).to receive(:[])
-      allow(ENV).to receive(:[]).with('ProgramFiles').and_return('C:\Program Files')
-      allow(ENV).to receive(:[]).with('ProgramFiles(x86)').and_return('C:\Program Files (x86)')
-      chef_run.converge(described_recipe)
-    end
-
-    it 'zabbix cookbook attribute is the case of windows platform' do
-      expect(chef_run.node[:zabbix][:etc_dir]).to eq('C:\\Program Files/Zabbix Agent')
-      expect(chef_run.node[:zabbix][:agent][:include_dir]).to eq('C:\\Program Files/Zabbix Agent/agent_include')
-    end
-
-    it 'create a config directory of include for zabbix agent' do
-      expect(chef_run).to create_directory('C:\\Program Files/Zabbix Agent/agent_include')
-    end
-
-    it 'create a including config file for zabbix agent' do
-      chef_run.node.set['zabbix_part']['agent']['include_conf_name'] = 'host_metadata.conf'
-      chef_run.converge(described_recipe)
-
-      expect(chef_run).to create_template('C:\\Program Files/Zabbix Agent/agent_include/host_metadata.conf')
-        .with(source: 'agentd_include.conf.erb')
-    end
-  end
 end
