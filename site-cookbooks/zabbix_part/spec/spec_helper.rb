@@ -1,4 +1,5 @@
 # Added by ChefSpec
+require 'chef'
 require 'chefspec'
 require 'chefspec/berkshelf'
 
