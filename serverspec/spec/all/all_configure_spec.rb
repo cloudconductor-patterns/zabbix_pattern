@@ -9,7 +9,6 @@ describe port(10_050) do
 end
 
 describe 'connect zbx_server' do
-
   servers = property[:servers]
 
   servers.each do |svr_name, server|
