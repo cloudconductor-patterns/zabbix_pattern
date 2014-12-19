@@ -123,7 +123,6 @@
     },
     "EIPAssociation" : {
       "Type" : "AWS::EC2::EIPAssociation",
-      "DependsOn" : "MonitoringWaitCondition",
       "Properties" : {
         "AllocationId" : { "Fn::GetAtt" : [ "FrontendEIP", "AllocationId" ]},
         "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
