@@ -1,5 +1,4 @@
 action :create do
-
   server_connection = {
     url: "http://#{new_resource.zabbix_fqdn}/api_jsonrpc.php",
     user: new_resource.login,
@@ -7,7 +6,6 @@ action :create do
   }
 
   Chef::Zabbix.with_connection(server_connection) do |connection|
-
     # delete if there is action with same name
     connection.query(
       method: 'action.get',
@@ -61,9 +59,8 @@ action :create do
       method: 'action.create',
       params: params
     )
-
   end
-  @new_resource.updated_by_last_action(true)
+  new_resource.updated_by_last_action(true)
 end
 
 def load_current_resource

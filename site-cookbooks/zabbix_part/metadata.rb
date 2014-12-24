@@ -9,3 +9,6 @@ supports 'centos', '= 6.5'
 
 depends          'yum-epel'
 depends          'zabbix'
+depends          'database', '= 2.3.1'
+depends          'mysql'
+depends          'apache2'

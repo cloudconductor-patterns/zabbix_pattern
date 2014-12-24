@@ -1,5 +1,4 @@
 action :import do
-
   filename = IO::File.basename(new_resource.source)
   temporary_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
 
@@ -38,5 +37,5 @@ action :import do
     parameters params
   end
 
-  @new_resource.updated_by_last_action(true)
+  new_resource.updated_by_last_action(true)
 end
