@@ -87,7 +87,7 @@
           "  exit 1\n",
           "}\n",
           "# Set Parameters\n",
-          "/bin/echo 'ROLE=monitoring' > /opt/cloudconductor/config\n",
+          "/bin/echo 'ROLE=monitoring' >> /opt/cloudconductor/config\n",
           "/bin/echo 'JOIN_ADDRESS=", { "Ref" : "ClusterAddress" }, "' >> /opt/cloudconductor/config\n",
           "# Run Consul\n",
           "# this process is required because of init sequence.\n",
