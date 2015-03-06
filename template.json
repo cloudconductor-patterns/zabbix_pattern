@@ -37,13 +37,9 @@
       "Description" : "[computed] The Subnet Id which is used by platform pattern.",
       "Type" : "String"
     },
-    "ClusterAddress" : {
-      "Description" : "[computed] Private IP Address to join cluster.",
-      "Type" : "String",
-      "MinLength": "7",
-      "MaxLength": "15",
-      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})",
-      "ConstraintDescription": "must be a valid IP address."
+    "ClusterAddresses" : {
+      "Description" : "[computed] Private IP Addresses to join cluster.",
+      "Type" : "String"
     },
     "SharedSecurityGroup" : {
       "Description" : "[computed] The SecurityGroup which is used by platform pattern.",
@@ -68,7 +64,8 @@
     "MonitoringServer" : {
       "Type" : "AWS::EC2::Instance",
       "Metadata" : {
-        "Role" : "monitoring"
+        "Role" : "monitoring",
+        "ClusterAddresses": { "Ref": "ClusterAddresses" }
       },
       "Properties" : {
         "ImageId" : { "Ref" : "monitoringImageId" },
