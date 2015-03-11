@@ -20,12 +20,12 @@
       "AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription" : "must be a valid IP CIDR range of the form x.x.x.x/x."
     },
-    "monitoringInstanceType" : {
+    "MonitoringInstanceType" : {
       "Description" : "MonitoringServer instance type",
       "Type" : "String",
       "Default" : "t2.small"
     },
-    "monitoringImageId" : {
+    "MonitoringImageId" : {
       "Description" : "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor.",
       "Type" : "String"
     },
@@ -68,8 +68,8 @@
         "ClusterAddresses": { "Ref": "ClusterAddresses" }
       },
       "Properties" : {
-        "ImageId" : { "Ref" : "monitoringImageId" },
-        "InstanceType" : { "Ref" : "monitoringInstanceType" },
+        "ImageId" : { "Ref" : "MonitoringImageId" },
+        "InstanceType" : { "Ref" : "MonitoringInstanceType" },
         "KeyName" : { "Ref" : "KeyName" },
         "NetworkInterfaces" : [{
            "DeviceIndex" : "0",
