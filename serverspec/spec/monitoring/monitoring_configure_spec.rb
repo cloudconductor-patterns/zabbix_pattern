@@ -18,6 +18,15 @@ describe service('zabbix_server') do
 end
 
 describe 'zabbix server example' do
+  before do
+    @http_proxy = ENV['http_proxy']
+    ENV['http_proxy'] = nil
+  end
+
+  after do
+    ENV['http_proxy'] = @http_proxy
+  end
+
   params = property[:consul_parameters]
 
   if params[:zabbix] && param[:zabbix][:web] && param[:zabbix][:web][:fqdn]
