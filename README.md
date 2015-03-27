@@ -15,7 +15,7 @@ Requirements
 Prerequisites
 -------------
 
-- cloudconductor (>= 0.3)
+- cloudconductor (>= 1.0)
 
 How to use patterns
 ============
@@ -31,26 +31,6 @@ Attributes
 The attributes not described here have default values, and you can change the value of them if you need.
 Please see the attribute files if you want to know what kind of attributes are in this pattern.
 
-Mandatory parameters
---------------------
-
-Nothing.
-
-Example of parameters
----------------------
-
-    {
-      "zabbix": {
-        "database": {
-          "dbpassword": "dbpass"
-        }
-      },
-      "zabbix_part": {
-        "auto_registration": {
-          "template": "Template OS Linux"
-        }
-      }
-    }
 
 Copyright and License
 =====================
