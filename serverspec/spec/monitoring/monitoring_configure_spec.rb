@@ -18,6 +18,9 @@ describe service('zabbix_server') do
 end
 
 describe 'zabbix server example' do
+  http_proxy = ENV['http_proxy']
+  ENV['http_proxy'] = nil
+
   params = property[:consul_parameters]
 
   if params[:zabbix] && param[:zabbix][:web] && param[:zabbix][:web][:fqdn]
@@ -38,6 +41,7 @@ describe 'zabbix server example' do
   end
 
   zabbix_client = CloudConductor::ZabbixClient.new(server, user, passwd)
+  ENV['http_proxy'] = http_proxy
   servers = property[:servers]
   servers.each_key do |hostname|
     result = zabbix_client.exist_host("#{hostname}")

@@ -20,12 +20,12 @@
       "AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription" : "must be a valid IP CIDR range of the form x.x.x.x/x."
     },
-    "monitoringInstanceType" : {
+    "MonitoringInstanceType" : {
       "Description" : "MonitoringServer instance type",
       "Type" : "String",
       "Default" : "t2.small"
     },
-    "monitoringImageId" : {
+    "MonitoringImageId" : {
       "Description" : "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor.",
       "Type" : "String"
     },
@@ -37,20 +37,16 @@
       "Description" : "[computed] The Subnet Id which is used by platform pattern.",
       "Type" : "String"
     },
-    "ClusterAddress" : {
-      "Description" : "[computed] Private IP Address to join cluster.",
-      "Type" : "String",
-      "MinLength": "7",
-      "MaxLength": "15",
-      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})",
-      "ConstraintDescription": "must be a valid IP address."
+    "ClusterAddresses" : {
+      "Description" : "[computed] Private IP Addresses to join cluster.",
+      "Type" : "String"
     },
     "SharedSecurityGroup" : {
       "Description" : "[computed] The SecurityGroup which is used by platform pattern.",
       "Type" : "String"
     },
     "CloudConductorLocation" : {
-      "Description" : "The IP address range of CloudConductor server to enable serf rpc access to frontend instance.",
+      "Description" : "The IP address range of CloudConductor server to enable Consul api access to frontend instance.",
       "Type" : "String",
       "MinLength": "9",
       "MaxLength": "18",
@@ -68,11 +64,12 @@
     "MonitoringServer" : {
       "Type" : "AWS::EC2::Instance",
       "Metadata" : {
-        "Role" : "monitoring"
+        "Role" : "monitoring",
+        "ClusterAddresses": { "Ref": "ClusterAddresses" }
       },
       "Properties" : {
-        "ImageId" : { "Ref" : "monitoringImageId" },
-        "InstanceType" : { "Ref" : "monitoringInstanceType" },
+        "ImageId" : { "Ref" : "MonitoringImageId" },
+        "InstanceType" : { "Ref" : "MonitoringInstanceType" },
         "KeyName" : { "Ref" : "KeyName" },
         "NetworkInterfaces" : [{
            "DeviceIndex" : "0",
@@ -87,14 +84,17 @@
           "  exit 1\n",
           "}\n",
           "# Set Parameters\n",
-          "/bin/echo 'ROLE=monitoring' > /opt/cloudconductor/config\n",
-          "/bin/echo 'SERF_JOIN_ADDRESS=", { "Ref" : "ClusterAddress" }, "' >> /opt/cloudconductor/config\n",
-          "# Run Serf\n",
-          "/etc/init.d/serf restart || error_exit 'Failed to start serf agent'\n",
+          "/bin/echo 'ROLE=monitoring' >> /opt/cloudconductor/config\n",
+          "/bin/echo 'STACK_NAME=", { "Ref": "AWS::StackName" }, "' >> /opt/cloudconductor/config\n",
+          "/bin/echo 'RESOURCE_NAME=MonitoringServer' >> /opt/cloudconductor/config\n",
+          "/bin/echo 'REGION=", { "Ref": "AWS::Region" }, "' >> /opt/cloudconductor/config\n",
+          "# Run Consul\n",
+          "# this process is required because of init sequence.\n",
+          "/etc/init.d/consul start || error_exit 'Failed to start consul agent'\n",
           "# Wait member-join event\n",
           "host_name=`hostname`\n",
           "for i in `seq 10`; do\n",
-          "  if [ ! -z \"`serf members | grep ${host_name}`\" ]; then\n",
+          "  if [ ! -z \"`/usr/local/bin/consul members | grep ${host_name}`\" ]; then\n",
           "    # Send success signal\n",
           "    /opt/aws/bin/cfn-signal -e 0 -r 'MonitoringServer Setup complete' '", { "Ref" : "MonitoringWaitHandle" }, "'\n",
           "    exit 0\n",
@@ -122,6 +122,7 @@
     },
     "EIPAssociation" : {
       "Type" : "AWS::EC2::EIPAssociation",
+      "DependsOn" : "MonitoringServer",
       "Properties" : {
         "AllocationId" : { "Fn::GetAtt" : [ "FrontendEIP", "AllocationId" ]},
         "NetworkInterfaceId" : { "Ref" : "MonitoringNetworkInterface" }
@@ -163,7 +164,7 @@
   "Outputs" : {
     "FrontendAddress" : {
       "Value" : { "Ref" : "FrontendEIP" },
-      "Description" : "Frontend DNS name or IP address to access serf rpc port from CloudConductor server. This output is required."
+      "Description" : "Frontend DNS name or IP address to access Consul api port from CloudConductor server. This output is required."
     }
   }
 }

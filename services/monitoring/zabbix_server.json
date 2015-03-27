@@ -1,0 +1,6 @@
+{
+  "service": {
+    "name": "zabbix_server",
+    "port": 10051
+  }
+}
