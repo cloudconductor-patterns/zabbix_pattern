@@ -12,7 +12,7 @@ action :create do
       params: {
         output: 'actionids',
         filter: {
-          name: new_resource.action_name ||  new_resource.name
+          name: new_resource.action_name || new_resource.name
         }
       }
     ).each do |result|
