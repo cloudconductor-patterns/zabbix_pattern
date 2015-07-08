@@ -98,5 +98,4 @@ install_serverspec
 
 setup_python_env ./lib/python-packages.txt
 
-#ruby ./lib/event_handler.rb "${1}" "${2}"
 python ./lib/event_handler.py "${1}" "${2}"
