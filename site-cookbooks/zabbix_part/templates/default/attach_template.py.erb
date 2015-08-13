@@ -1,0 +1,47 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys, json, urllib2, commands
+
+from zabbix_api import ZabbixApi
+
+if __name__ == "__main__":
+    node = json.loads(sys.argv[1])
+    if len(node) != 0:
+        file = open('<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/template_list.json', 'r')
+        template_list = json.load(file)
+        zabbix = ZabbixApi(url = 'http://<%= node['zabbix']['server']['host'] %>/api_jsonrpc.php', username = '<%= node['zabbix']['web']['login'] %>', password = '<%= node['zabbix']['web']['password'] %>')
+        zabbix.user_login()
+        
+        #git_pull = commands.getoutput('<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/git_pull.sh')
+        #if git_pull == 'invalid':
+        #    sys.exit(0)
+        #elif git_pull == 'true':
+        #    files = glob.glob('/opt/cloudconductor/patterns/zabbix_pattern/site-cookbooks/zabbix_part/files/default/*.xml')
+        #    for file in files:
+        #        print file
+        #        zabbix.template_import(file)
+        
+        for i in range(len(node)):
+            host_data = zabbix.get_data('host.get', node[i]["Node"]["Node"])
+            if len(host_data) == 0:
+                discovered_group = zabbix.get_data('hostgroup.get', '<%= node['zabbix_part']['discovered']['group'] %>')
+                createhost = zabbix.create_host(node[i]["Node"]["Node"], node[i]["Node"]["Address"], discovered_group[0]["groupid"] ,'<%= node['zabbix_part']['agent']['port'] %>')
+                host_id = createhost['hostids'][0]
+            else:
+                host_id = host_data[0]['hostid']
+
+            if not node[i]["Service"]["Service"] in template_list:
+                continue
+            service_templates = template_list[node[i]["Service"]["Service"]]
+            if service_templates["interface_type"] == 2:
+                zabbix.create_host_interface(host_id, node[i]["Node"]["Address"], service_templates["interface_type"], '<%= node['zabbix_part']['snmp']['port'] %>')
+            elif service_templates["interface_type"] == 3:
+                zabbix.create_host_interface(host_id, node[i]["Node"]["Address"], service_templates["interface_type"], '<%= node['zabbix_part']['ipmi']['port'] %>')
+            elif service_templates["interface_type"] == 4:
+                zabbix.create_host_interface(host_id, node[i]["Node"]["Address"], service_templates["interface_type"], '<%= node['zabbix_part']['jmx']['port'] %>')
+            for j in range(len(service_templates["template"])):
+                template_data = zabbix.get_data('template.get', service_templates["template"][j])
+                if len(template_data) != 0:
+                    zabbix.attach_templates(host_id, template_data[0]['templateid'])
+

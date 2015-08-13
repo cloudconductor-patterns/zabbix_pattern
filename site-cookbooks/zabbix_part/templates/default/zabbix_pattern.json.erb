@@ -1,0 +1,29 @@
+{
+  "watches": [
+    {
+      "type": "service",
+      "service": "consul",
+      "handler": "<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.sh"
+    },
+    {
+      "type": "service",
+      "service": "httpd",
+      "handler": "<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.sh"
+    },
+    {
+      "type": "service",
+      "service": "postgresql",
+      "handler": "<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.sh"
+    },
+    {
+      "type": "service",
+      "service": "tomcat",
+      "handler": "<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.sh"
+    },
+    {
+      "type": "service",
+      "service": "zabbix_server",
+      "handler": "<%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.sh"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+#!/bin/env python
+
+import json, urllib2
+
+class ZabbixApi(object):
+
+    def __init__(self, url, username, password):
+        self.url = url
+        self.username = username
+        self.password = password
+
+    def user_login(self):
+        post = json.dumps({'jsonrpc':'2.0', 'method':'user.login', 'params':{'user':self.username, 'password':self.password}, 'auth':None, 'id': 1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)
+        contents_dict = json.loads(contents.read())
+        self.auth_token = contents_dict["result"]
+
+    def get_data(self, method, name):
+        post = json.dumps({'jsonrpc':'2.0', 'method':method, 'params':{'output':'extend', 'filter':{'name': [name]}}, 'auth':self.auth_token, 'id': 1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)
+        contents_dict = json.loads(contents.read())
+        return contents_dict["result"]
+
+    def create_host(self, host, ipaddress, group, port):
+        post = json.dumps({'jsonrpc':'2.0', 'method':'host.create', 'params':{'host':host, 'interfaces':[{'type': 1, 'main': 1, 'useip': 1, 'ip': ipaddress, 'dns': '', 'port':port}], 'groups':[{'groupid':group}]},'auth':self.auth_token,'id':1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)
+        contents_dict = json.loads(contents.read())
+        return contents_dict["result"]
+
+    def create_host_interface(self, host, ipaddress, type, port):
+        post = json.dumps({'jsonrpc':'2.0', 'method':'hostinterface.create', 'params':{'hostid':host, 'type':type, 'main':1, 'useip':1, 'ip':ipaddress, 'dns':'', 'port':port}, 'auth':self.auth_token, 'id':1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)
+
+    def attach_templates(self, host_id, template_id):
+        post = json.dumps({'jsonrpc':'2.0', 'method':'template.massadd', 'params':{'templates':[{'templateid':template_id}], 'hosts':[{'hostid':host_id}]}, 'auth':self.auth_token, 'id':1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)
+
+    def template_import(self, filepath):
+        templates = open(filepath).read()
+        post = json.dumps({'jsonrpc':'2.0', 'method':'configuration.import', 'params':{'format': 'xml','rules': {'groups': {'createMissing': 'true'},'templates': {'createMissing': 'true','updateExisting': 'true'},'templateScreens': {'createMissing': 'true','updateExisting': 'true'},'templateLinkage': {'createMissing': 'true'},'applications': {'createMissing': 'true'},'items': {'createMissing': 'true','updateExisting': 'true'},'discoveryRules': {'createMissing': 'true','updateExisting': 'true'},'triggers': {'createMissing': 'true','updateExisting': 'true'},'graphs': {'createMissing': 'true','updateExisting': 'true'}},'source': templates},'auth': self.auth_token,'id':1})
+        request = urllib2.Request(self.url, post, {"Content-Type":"application/json-rpc"})
+        contents = urllib2.urlopen(request)

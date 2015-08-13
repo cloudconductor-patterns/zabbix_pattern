@@ -1,7 +1,7 @@
 
 include_attribute 'zabbix'
 
-default['zabbix']['server']['version'] = '2.2.6'
+default['zabbix']['server']['version'] = '2.2.9'
 default['zabbix']['web']['install_method'] = 'apache'
 default['zabbix']['web']['fqdn'] = 'localhost'
 default['zabbix']['database']['dbpassword'] = 'ilikerandompasswords'
@@ -10,5 +10,14 @@ default['zabbix']['agent']['hostname'] = node['hostname']
 default['zabbix_part']['auto_registration']['template'] = 'Template OS Linux'
 default['zabbix_part']['agent']['include_conf_name'] = 'HostMetadata.conf'
 default['zabbix_part']['agent']['HostMetadata'] = []
+default['zabbix_part']['consul']['consul_dir'] = '/etc/consul.d'
+default['zabbix_part']['consul']['event_handlers_dir'] = '/opt/consul/attach_template'
+
+default['zabbix_part']['agent']['port'] = '10050'
+default['zabbix_part']['snmp']['port'] = '161'
+default['zabbix_part']['jmx']['port'] = '12345'
+default['zabbix_part']['ipmi']['port'] = '623'
+default['zabbix_part']['discovered']['group'] = 'Discovered hosts'
 
 default['mysql']['version'] = '5.6'
+default['mysql']['enable_utf8'] = 'true'

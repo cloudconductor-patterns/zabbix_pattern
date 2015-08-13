@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>2.0</version>
+    <date>2015-07-13T02:23:07Z</date>
+    <groups>
+        <group>
+            <name>Discovered hosts</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>template_consul</template>
+            <name>template_consul</name>
+            <groups>
+                <group>
+                    <name>Discovered hosts</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+        <template>
+            <template>template_httpd</template>
+            <name>template_httpd</name>
+            <groups>
+                <group>
+                    <name>Discovered hosts</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+        <template>
+            <template>template_postgresql</template>
+            <name>template_postgresql</name>
+            <groups>
+                <group>
+                    <name>Discovered hosts</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+        <template>
+            <template>template_tomcat</template>
+            <name>template_tomcat</name>
+            <groups>
+                <group>
+                    <name>Discovered hosts</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+        <template>
+            <template>template_zabbix_server</template>
+            <name>template_zabbix_server</name>
+            <groups>
+                <group>
+                    <name>Discovered hosts</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+    </templates>
+</zabbix_export>
