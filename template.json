@@ -139,7 +139,7 @@
         ]
       }
     },
-    "SharedSecurityGroupInboundRule": {
+    "SharedSecurityGroupInboundRuleZabbixAgent": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties":{
         "IpProtocol": "tcp",
@@ -147,6 +147,17 @@
         "ToPort": "10050",
         "SourceSecurityGroupId": { "Ref" : "MonitoringSecurityGroup" },
         "GroupId": { "Ref" : "SharedSecurityGroup" }
+      }
+    },
+    "SharedSecurityGroupInboundRuleZabbixJMX": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties":{
+        "GroupDescription" : "Enable Zabbix JMX access",
+        "VpcId" : { "Ref" : "VpcId" },
+        "SecurityGroupIngress" : [
+          {"IpProtocol" : "tcp", "FromPort" : "12345", "ToPort" : "12345", "CidrIp" : "10.0.0.0/16"},
+          {"IpProtocol" : "tcp", "FromPort" : "12346", "ToPort" : "12346", "CidrIp" : "10.0.0.0/16"}
+        ]
       }
     },
     "MonitoringWaitHandle" : {
