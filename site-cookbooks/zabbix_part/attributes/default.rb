@@ -24,3 +24,5 @@ default['zabbix_part']['discovered']['group'] = 'Discovered hosts'
 
 default['mysql']['version'] = '5.6'
 default['mysql']['enable_utf8'] = 'true'
+
+default['java']['jdk_version'] = '7'
