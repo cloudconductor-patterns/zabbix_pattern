@@ -67,13 +67,6 @@ directory 'Create attach_template' do
   recursive true
 end
 
-zabbix_part_import_template 'zbx_attach_template.xml' do
-  zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
-  login  zabbix_server['zabbix']['web']['login']
-  password zabbix_server['zabbix']['web']['password']
-  source 'zbx_attach_template.xml'
-end
-
 template "#{node['zabbix_part']['consul']['consul_dir']}/zabbix_pattern.json" do
   source 'zabbix_pattern.json.erb'
   owner 'root'
