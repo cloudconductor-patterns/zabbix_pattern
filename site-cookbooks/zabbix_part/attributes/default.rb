@@ -1,7 +1,9 @@
 
 include_attribute 'zabbix'
 
-default['zabbix']['server']['version'] = '2.2.9'
+default['zabbix']['server']['version'] = '2.2.10'
+default['zabbix']['server']['java_pollers'] = '3'
+default['zabbix']['server']['java_gateway_enable'] = true
 default['zabbix']['web']['install_method'] = 'apache'
 default['zabbix']['web']['fqdn'] = 'localhost'
 default['zabbix']['database']['dbpassword'] = 'ilikerandompasswords'
