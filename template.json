@@ -139,32 +139,12 @@
         ]
       }
     },
-    "SharedSecurityGroupInboundRuleZabbixAgent": {
+    "SharedSecurityGroupInboundRule": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties":{
         "IpProtocol": "tcp",
         "FromPort": "10050",
         "ToPort": "10050",
-        "SourceSecurityGroupId": { "Ref" : "MonitoringSecurityGroup" },
-        "GroupId": { "Ref" : "SharedSecurityGroup" }
-      }
-    },
-    "SharedSecurityGroupInboundRuleZabbixJMX": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties":{
-        "IpProtocol": "tcp",
-        "FromPort": "12345",
-        "ToPort": "12345",
-        "SourceSecurityGroupId": { "Ref" : "MonitoringSecurityGroup" },
-        "GroupId": { "Ref" : "SharedSecurityGroup" }
-      }
-    },
-    "SharedSecurityGroupInboundRuleZabbixJMXRmi": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties":{
-        "IpProtocol": "tcp",
-        "FromPort": "12346",
-        "ToPort": "12346",
         "SourceSecurityGroupId": { "Ref" : "MonitoringSecurityGroup" },
         "GroupId": { "Ref" : "SharedSecurityGroup" }
       }
