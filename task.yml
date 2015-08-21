@@ -1,0 +1,45 @@
+environments:
+  HOME: /root
+  PATH: $PATH:/opt/chefdk/embedded/bin:/opt/chef/embedded/bin:/usr/bin
+  ROLE: '{{config.role}}'
+  CONSUL_SECRET_KEY: '{{config.token}}'
+
+default:
+  timeout: 1800
+
+events:
+  setup:
+    description: Execute setup
+    task: setup
+
+  configure:
+    description: Execute configure chef
+    priority: 99
+    task: configure
+
+  spec:
+    description: Execute spec
+    task: spec
+
+tasks:
+  setup:
+    description: Execute setup chef
+    operations:
+      - execute:
+          file: prepare.sh
+      - chef:
+          run_list:
+            - role[{{role}}_setup]
+
+  configure:
+    description: Execute configure chef
+    operations:
+      - chef:
+          run_list:
+            - role[{{role}}_configure]
+
+  spec:
+    description: Execute serverspec
+    operations:
+      - execute:
+          script: python lib/event_handler.py {{role}} spec
