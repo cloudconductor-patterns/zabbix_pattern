@@ -41,6 +41,10 @@ describe 'zabbix_part::setup' do
     expect(chef_run).to include_recipe 'zabbix::web'
   end
 
+  it 'include zabbix::java_gateway recipe' do
+    expect(chef_run).to include_recipe 'zabbix::java_gateway'
+  end
+
   it 'include apache2::mod_php5 recipe' do
     expect(chef_run).to include_recipe 'apache2::mod_php5'
   end
