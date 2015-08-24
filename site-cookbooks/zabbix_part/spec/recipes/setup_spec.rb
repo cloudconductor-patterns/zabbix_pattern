@@ -108,4 +108,46 @@ describe 'zabbix_part::setup' do
     expect(ENV).to receive(:[]=).with('https_proxy', '127.0.0.101')
     chef_run.ruby_block('set_proxy').old_run_action(:create)
   end
+
+  it 'create a attach template file' do
+    chef_run.node.set['zabbix_part']['consul']['consul_dir'] = '/etc/consul.d'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_template('/etc/consul.d/zabbix_pattern.json').with(
+      source: 'zabbix_pattern.json.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
+  end
+
+  it 'create a attach template file' do
+    chef_run.node.set['zabbix_part']['consul']['event_handlers_dir'] = '/opt/consul/attach_template'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_template('/opt/consul/attach_template/attach_template.sh').with(
+      source: 'attach_template.sh.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
+    expect(chef_run).to create_template('/opt/consul/attach_template/attach_template.py').with(
+      source: 'attach_template.py.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
+    expect(chef_run).to create_template('/opt/consul/attach_template/zabbix_api.py').with(
+      source: 'zabbix_api.py.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
+    expect(chef_run).to create_template('/opt/consul/attach_template/template_list.json').with(
+      source: 'template_list.json.erb',
+      owner: 'root',
+      group: 'root',
+      mode: '755'
+    )
+  end
 end

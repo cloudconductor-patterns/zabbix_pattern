@@ -19,7 +19,6 @@ describe 'zabbix_part::all_configure' do
   end
 
   it 'local servers role is put on attribute of zabbix_part.agent.hostmetadata' do
-#    expect(chef_run.node[:zabbix_part][:agent][:HostMetadata]).to eq('monitoring')
     expect(chef_run.node[:zabbix_part][:agent][:HostMetadata]).to eq(['monitoring'])
   end
 
