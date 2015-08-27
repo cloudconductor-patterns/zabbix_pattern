@@ -71,7 +71,7 @@ describe 'zabbix_part::all_configure' do
   describe 'multiple of zabbix server is available' do
     it 'only zabbix servers private ip is put on attribute of servers and servers_active' do
       chef_run.node.set['cloudconductor']['servers']['ap_svr'] = {
-        roles: 'ap',
+        roles: ['ap'],
         private_ip: '127.0.0.2'
       }
       chef_run.node.set['cloudconductor']['servers']['zbx_svr2'] = {
