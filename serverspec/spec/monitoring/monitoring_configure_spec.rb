@@ -23,19 +23,19 @@ describe 'zabbix server example' do
 
   params = property[:consul_parameters]
 
-  if params[:zabbix] && param[:zabbix][:web] && param[:zabbix][:web][:fqdn]
-    server = param[:zabbix][:web][:fqdn]
+  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:fqdn]
+    server = params[:zabbix][:web][:fqdn]
   else
     server = 'localhost'
   end
 
-  if params[:zabbix] && param[:zabbix][:web] && param[:zabbix][:web][:login]
-    user = param[:zabbix][:web][:login]
+  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:login]
+    user = params[:zabbix][:web][:login]
   else
     user = 'admin'
   end
-  if params[:zabbix] && param[:zabbix][:web] && param[:zabbix][:web][:password]
-    passwd = param[:zabbix][:web][:password]
+  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:password]
+    passwd = params[:zabbix][:web][:password]
   else
     passwd = 'zabbix'
   end
