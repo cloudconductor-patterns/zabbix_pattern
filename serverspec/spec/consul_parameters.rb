@@ -31,8 +31,8 @@ module ConsulParameters
         key = response_hash[:Key]
         next if key == 'cloudconductor/servers'
         hostname = key.slice(%r{cloudconductor/servers/(?<hostname>[^/]*)}, 'hostname')
-        server_info_json = Base64.decode64(response_hash[:Value])[:cloudconductor][:servers][hostname.to_sym]
-        servers[hostname] = JSON.parse(server_info_json, symbolize_names: true)
+        server_info_json = Base64.decode64(response_hash[:Value])
+        servers[hostname] = JSON.parse(server_info_json, symbolize_names: true)[:cloudconductor][:servers][hostname.to_sym]
       end
     rescue
       servers = {}
