@@ -57,3 +57,60 @@ ruby_block 'set_proxy' do
     ENV['https_proxy'] = original_https_proxy
   end
 end
+
+directory 'Create attach_template' do
+  Chef::Log.info "platform is #{node['platform']}"
+  path node['zabbix_part']['consul']['event_handlers_dir']
+  owner 'root'
+  group 'root'
+  mode '755'
+  recursive true
+end
+
+template "#{node['zabbix_part']['consul']['consul_dir']}/zabbix_pattern.json" do
+  source 'zabbix_pattern.json.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/attach_template.sh" do
+  source 'attach_template.sh.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/attach_template.py" do
+  source 'attach_template.py.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/zabbix_api.py" do
+  source 'zabbix_api.py.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/template_list.json" do
+  source 'template_list.json.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/config.json" do
+  source 'config.json.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end

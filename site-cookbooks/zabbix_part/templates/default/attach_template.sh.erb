@@ -1,0 +1,3 @@
+CONSUL_SECRET_KEY=`jq -r .acl_master_token /etc/consul.d/default.json`
+stdin=`echo $(cat -) | sed -e 's/\"/\\\"/g'`
+consul lock -token $CONSUL_SECRET_KEY service/foo/lock 'python <%= node['zabbix_part']['consul']['event_handlers_dir'] %>/attach_template.py "'$stdin'"'

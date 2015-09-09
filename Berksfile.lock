@@ -1,4 +1,8 @@
 DEPENDENCIES
+  zabbix
+    git: https://github.com/bsmile/zabbix.git
+    revision: fc5ead2957ff05757126c7ffc7d9bb963c63eeaf
+    tag: test/jmx-monitoring
   zabbix_part
     path: site-cookbooks/zabbix_part
 

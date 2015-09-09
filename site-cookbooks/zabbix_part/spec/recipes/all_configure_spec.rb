@@ -7,7 +7,7 @@ describe 'zabbix_part::all_configure' do
   before do
     chef_run.node.automatic[:hostname] = 'zbx_svr'
     chef_run.node.set['cloudconductor']['servers']['zbx_svr'] = {
-      roles: 'monitoring',
+      roles: ['monitoring'],
       private_ip: '127.0.0.1'
     }
     chef_run.converge(described_recipe)
@@ -19,12 +19,12 @@ describe 'zabbix_part::all_configure' do
   end
 
   it 'local servers role is put on attribute of zabbix_part.agent.hostmetadata' do
-    expect(chef_run.node[:zabbix_part][:agent][:HostMetadata]).to eq('monitoring')
+    expect(chef_run.node[:zabbix_part][:agent][:HostMetadata]).to eq(['monitoring'])
   end
 
   it 'only zabbix servers private ip is put on attribute of servers and servers_active' do
     chef_run.node.set['cloudconductor']['servers']['ap_svr'] = {
-      roles: 'ap',
+      roles: ['ap'],
       private_ip: '127.0.0.2'
     }
     chef_run.converge(described_recipe)
@@ -57,7 +57,7 @@ describe 'zabbix_part::all_configure' do
     chef_run.node.set['zabbix_part']['agent']['include_conf_name'] = 'host_metadata.conf'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to render_file('/etc/zabbix/agent_include/host_metadata.conf').with_content(/^HostMetadata=monitoring/)
+    expect(chef_run).to render_file('/etc/zabbix/agent_include/host_metadata.conf').with_content(/^HostMetadata=\["monitoring"\]/)
   end
 
   it 'include yum-epel recipe' do
@@ -71,11 +71,11 @@ describe 'zabbix_part::all_configure' do
   describe 'multiple of zabbix server is available' do
     it 'only zabbix servers private ip is put on attribute of servers and servers_active' do
       chef_run.node.set['cloudconductor']['servers']['ap_svr'] = {
-        roles: 'ap',
+        roles: ['ap'],
         private_ip: '127.0.0.2'
       }
       chef_run.node.set['cloudconductor']['servers']['zbx_svr2'] = {
-        roles: 'monitoring',
+        roles: ['monitoring'],
         private_ip: '127.0.0.3'
       }
       chef_run.converge(described_recipe)
