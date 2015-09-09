@@ -106,3 +106,11 @@ template "#{node['zabbix_part']['consul']['event_handlers_dir']}/template_list.j
   mode '755'
   action :create
 end
+
+template "#{node['zabbix_part']['consul']['event_handlers_dir']}/config.json" do
+  source 'config.json.erb'
+  owner 'root'
+  group 'root'
+  mode '755'
+  action :create
+end
