@@ -97,5 +97,3 @@ install_berkshelf
 install_serverspec
 
 setup_python_env ./lib/python-packages.txt
-
-python ./lib/event_handler.py "${1}" "${2}"

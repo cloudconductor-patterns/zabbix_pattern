@@ -19,13 +19,7 @@ include_recipe 'zabbix::server'
 include_recipe 'zabbix::web'
 include_recipe 'apache2::mod_php5'
 
-if node['zabbix']['web']['fqdn']
-  zabbix_server = node
-else
-  Chef::Log.warn('This recipe uses search. Chef Solo does not support search.')
-  Chef::Log.warn("If you did not set node['zabbix']['web']['fqdn'], the recipe will fail")
-  return
-end
+zabbix_server = node
 
 ruby_block 'restart_apache2' do
   block {}
