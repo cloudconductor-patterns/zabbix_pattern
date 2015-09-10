@@ -16,10 +16,10 @@ describe 'connect jmx_server' do
         if File.exist?('/etc/sysconfig/tomcat7')
           describe "#{svr_name} access check" do
             describe command("hping3 -S #{server[:private_ip]} -p 12345 -c 5") do
-              its(:stdout) { should match '/sport=10051 flags=SA/' }
+              its(:stdout) { should match '/sport=12345 flags=SA/' }
             end
             describe command("hping3 -S #{server[:private_ip]} -p 12346 -c 5") do
-              its(:stdout) { should match '/sport=10051 flags=SA/' }
+              its(:stdout) { should match '/sport=12346 flags=SA/' }
             end
           end
         end
