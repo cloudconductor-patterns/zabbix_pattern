@@ -10,8 +10,8 @@ end
 
 describe 'connect jmx_server' do
   servers = property[:servers]
-  svr['roles'].each do |var|
-    case var
+  servers.each do |var, server|
+    case var[:roles]
     when "ap" then
       if File.exist?('/etc/sysconfig/tomcat7')
         describe "#{svr_name} access check" do
