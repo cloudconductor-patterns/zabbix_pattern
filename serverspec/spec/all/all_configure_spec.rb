@@ -10,17 +10,16 @@ end
 
 describe 'connect jmx_server' do
   servers = property[:servers]
-    svr['roles'].each do |var|
-      case var
-      when "ap" then
-        if File.exist?('/etc/sysconfig/tomcat7')
-          describe "#{svr_name} access check" do
-            describe command("hping3 -S #{server[:private_ip]} -p 12345 -c 5") do
-              its(:stdout) { should match '/sport=12345 flags=SA/' }
-            end
-            describe command("hping3 -S #{server[:private_ip]} -p 12346 -c 5") do
-              its(:stdout) { should match '/sport=12346 flags=SA/' }
-            end
+  svr['roles'].each do |var|
+    case var
+    when "ap" then
+      if File.exist?('/etc/sysconfig/tomcat7')
+        describe "#{svr_name} access check" do
+          describe command("hping3 -S #{server[:private_ip]} -p 12345 -c 5") do
+            its(:stdout) { should match '/sport=12345 flags=SA/' }
+          end
+          describe command("hping3 -S #{server[:private_ip]} -p 12346 -c 5") do
+            its(:stdout) { should match '/sport=12346 flags=SA/' }
           end
         end
       end
