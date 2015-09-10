@@ -38,7 +38,7 @@ node['cloudconductor']['servers'].each do |svr_name, svr|
             not_if 'grep jmxremote /etc/sysconfig/tomcat7'
             user 'root'
             group 'root'
-            command "sed -i -e 's/CATALINA_OPTS=\"/CATALINA_OPTS=\" + #{catalina_opts}/g' /etc/sysconfig/tomcat7"
+            command "sed -i -e 's/CATALINA_OPTS=\"/CATALINA_OPTS=\" #{catalina_opts}/g' /etc/sysconfig/tomcat7"
             action :run
           end
           service 'tomcat7' do
