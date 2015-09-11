@@ -10,8 +10,8 @@ end
 
 describe 'connect jmx_server' do
   servers = property[:servers]
-  servers['roles'].each do |svr_name,server|
-    server['roles'].each do |var|
+  servers.each do |svr_name,server|
+    server.each do |var|
       case var
       when "ap" then
         if File.exist?('/etc/sysconfig/tomcat7')
