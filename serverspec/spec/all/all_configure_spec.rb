@@ -10,10 +10,10 @@ end
 
 describe 'connect jmx_server' do
   servers = property[:servers]
-  servers.each do |svr_name,server|
+  servers.each do |svr_name, server|
     server.each do |var|
       case var
-      when "ap" then
+      when 'ap' then
         if File.exist?('/etc/sysconfig/tomcat7')
           describe "#{svr_name} access check" do
             describe command("hping3 -S #{server[:private_ip]} -p 12345 -c 5") do

@@ -75,7 +75,7 @@ template "#{node['zabbix_part']['consul']['consul_dir']}/zabbix_pattern.json" do
   action :create
 end
 
-filenames = %w[attach_template.sh attach_template.py zabbix_api.py template_list.json config.json]
+filenames = %w(attach_template.sh attach_template.py zabbix_api.py template_list.json config.json)
 filenames.each do |filename|
   template "#{node['zabbix_part']['consul']['event_handlers_dir']}/#{filename}" do
     source "#{filename}.erb"
