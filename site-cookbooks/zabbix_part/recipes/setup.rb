@@ -75,42 +75,13 @@ template "#{node['zabbix_part']['consul']['consul_dir']}/zabbix_pattern.json" do
   action :create
 end
 
-template "#{node['zabbix_part']['consul']['event_handlers_dir']}/attach_template.sh" do
-  source 'attach_template.sh.erb'
-  owner 'root'
-  group 'root'
-  mode '755'
-  action :create
-end
-
-template "#{node['zabbix_part']['consul']['event_handlers_dir']}/attach_template.py" do
-  source 'attach_template.py.erb'
-  owner 'root'
-  group 'root'
-  mode '755'
-  action :create
-end
-
-template "#{node['zabbix_part']['consul']['event_handlers_dir']}/zabbix_api.py" do
-  source 'zabbix_api.py.erb'
-  owner 'root'
-  group 'root'
-  mode '755'
-  action :create
-end
-
-template "#{node['zabbix_part']['consul']['event_handlers_dir']}/template_list.json" do
-  source 'template_list.json.erb'
-  owner 'root'
-  group 'root'
-  mode '755'
-  action :create
-end
-
-template "#{node['zabbix_part']['consul']['event_handlers_dir']}/config.json" do
-  source 'config.json.erb'
-  owner 'root'
-  group 'root'
-  mode '755'
-  action :create
+filenames = %w[attach_template.sh attach_template.py zabbix_api.py template_list.json config.json]
+filenames.each do |filename|
+  template "#{node['zabbix_part']['consul']['event_handlers_dir']}/#{filename}" do
+    source "#{filename}.erb"
+    owner 'root'
+    group 'root'
+    mode '755'
+    action :create
+  end
 end
