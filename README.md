@@ -15,7 +15,7 @@ Requirements
 Prerequisites
 -------------
 
-- cloudconductor (>= 1.0)
+- cloudconductor (>= 1.1)
 
 How to use patterns
 ============

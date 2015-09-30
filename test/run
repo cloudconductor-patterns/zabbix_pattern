@@ -1,0 +1,61 @@
+#! /bin/sh -e
+# Copyright 2014-2015 TIS Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+PROGNAME=$(basename $0)
+PG_PATH=$(cd $(dirname $0); pwd)
+
+usage() {
+  echo "Useage: $PROGNAME <command> ..."
+  echo
+  echo "<command>"
+  echo "  unit   :"
+  echo "  pytest :"
+}
+
+unit_test() {
+  source ./test/lib/python-env.sh
+
+  PACKAGE_LIST='./test/unit/lib/python-packages.txt'
+  python_exec ./test/unit/lib/event_handler_test.py
+}
+
+py_test() {
+  source ./test/lib/python-env.sh
+  PACKAGE_LIST='./test/unit/lib/python-packages.txt'
+  pyenv_activate
+
+  py.test --pep8 ./
+
+  deactivate
+}
+
+for OPT in "$@"
+do
+  case "$OPT" in
+    'unit' )
+      shift
+      unit_test $@
+      exit $?
+      ;;
+    'pytest' )
+      shift
+      py_test $@
+      exit $?
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done

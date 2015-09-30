@@ -11,7 +11,44 @@
 # Set attribute data
 node['cloudconductor']['servers'].each do |svr_name, svr|
   Chef::Log.info 'Set attribute data '
-  node.default.zabbix_part.agent.HostMetadata = svr['roles'] if node['hostname'] == svr_name
+
+  if node['hostname'] == svr_name
+    node.default.zabbix_part.agent.HostMetadata = svr['roles']
+
+    svr['roles'].each do |var|
+      case var
+      when 'ap' then
+        if File.exist?('/etc/sysconfig/tomcat7')
+          execute 'hostname on hosts file' do
+            not_if "grep #{node['hostname']} /etc/hosts"
+            user 'root'
+            group 'root'
+            command "sed -i -e '1s/$/ #{node['''hostname''']}/g' /etc/hosts"
+            action :run
+          end
+
+          jmxremote_port = ' -Dcom.sun.management.jmxremote.port=12345'
+          jmxremote_rmi_port = ' -Dcom.sun.management.jmxremote.rmi.port=12346'
+          jmxremote_authenticate = ' -Dcom.sun.management.jmxremote.authenticate=false'
+          jmxremote_ssl = ' -Dcom.sun.management.jmxremote.ssl=false'
+          rmi_server_hostname = " -Djava.rmi.server.hostname=#{node['ipaddress']}"
+          catalina_opts = jmxremote_port + jmxremote_rmi_port + jmxremote_authenticate + jmxremote_ssl + rmi_server_hostname
+
+          execute 'tomcat_catalina_opts' do
+            not_if 'grep jmxremote /etc/sysconfig/tomcat7'
+            user 'root'
+            group 'root'
+            command "sed -i -e 's/CATALINA_OPTS=\"/CATALINA_OPTS=\" #{catalina_opts}/g' /etc/sysconfig/tomcat7"
+            action :run
+          end
+          service 'tomcat7' do
+            action [:enable, :restart]
+          end
+        end
+      end
+    end
+  end
+
   next unless svr['roles'].include? 'monitoring'
 
   my_ary = svr['private_ip']

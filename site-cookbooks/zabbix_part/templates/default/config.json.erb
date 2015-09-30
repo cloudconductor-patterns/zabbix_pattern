@@ -1,0 +1,20 @@
+{
+  "zabbix": {
+    "user": "<%= node['zabbix']['web']['login'] %>",
+    "password": "<%= node['zabbix']['web']['password'] %>",
+    "url": "http://<%= node['zabbix']['server']['host'] %>/api_jsonrpc.php",
+    "discovered_group": "<%= node['zabbix_part']['discovered']['group'] %>"
+  },
+  "agent": {
+    "port": "<%= node['zabbix_part']['agent']['port'] %>"
+  },
+  "snmp": {
+    "port": "<%= node['zabbix_part']['snmp']['port'] %>"
+  },
+  "ipmi": {
+    "port": "<%= node['zabbix_part']['ipmi']['port'] %>"
+  },
+  "jmx": {
+    "port": "<%= node['zabbix_part']['jmxremote']['port'] %>"
+  }
+}
