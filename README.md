@@ -16,12 +16,13 @@ Prerequisites
 -------------
 
 - cloudconductor (>= 1.1)
+- any platform pattern
 
 How to use patterns
 ============
 
 You can apply this pattern by using CloudConductor CLI tools or REST API.
-Please see [Getting started](http://cloudconductor.org/) in official web site to know
+Please see [Getting started](http://cloudconductor.org/en/documents/getting-started) in official web site to know
 how the parameters you input to CloudConductor CLI tools or REST API are converted into
 chef attributes.
 
