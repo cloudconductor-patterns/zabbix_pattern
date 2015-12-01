@@ -1,6 +1,6 @@
 variable "bootstrap_expect" {}
 variable "vpc_id" {}
-variable "subnet_id" {}
+variable "subnet_ids" {}
 variable "shared_security_group" {}
 variable "key_name" {}
 variable "monitoring_image" {}
@@ -31,7 +31,7 @@ resource "aws_instance" "monitoring_server" {
   instance_type = "${var.monitoring_instance_type}"
   key_name = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.monitoring_security_group.id}", "${var.shared_security_group}"]
-  subnet_id = "${element(split(", ", var.subnet_id), count.index)}"
+  subnet_id = "${element(split(", ", var.subnet_ids), count.index)}"
   associate_public_ip_address = true
   tags {
     Name = "MonitoringServer"
