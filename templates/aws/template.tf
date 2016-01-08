@@ -1,4 +1,3 @@
-variable "bootstrap_expect" {}
 variable "vpc_id" {}
 variable "subnet_ids" {}
 variable "shared_security_group" {}
