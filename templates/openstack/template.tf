@@ -1,3 +1,5 @@
+variable "subnet_ids" {}
+variable "shared_security_group" {}
 variable "key_name" {}
 variable "monitoring_image" {}
 variable "monitoring_instance_type" {}
@@ -38,7 +40,7 @@ resource "openstack_compute_instance_v2" "monitoring_server" {
   security_groups = ["${openstack_compute_secgroup_v2.monitoring_security_group.name}", "${var.shared_security_group}"]
   floating_ip = "${element(openstack_compute_floatingip_v2.main.*.address, count.index)}"
   network {
-    uuid = "${element(split(", ", var.network_id), count.index)}"
+    uuid = "${element(split(", ", var.subnet_ids), count.index)}"
   }
 }
 
