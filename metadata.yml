@@ -11,5 +11,5 @@ depends:   [zabbix]
 conflicts: []
 
 supports:
-  - os: "centos"
-    version: "= 6.5"
+  - platform: "centos"
+    platform_version: "6.5"
