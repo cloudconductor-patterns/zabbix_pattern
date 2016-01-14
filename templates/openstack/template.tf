@@ -1,10 +1,3 @@
-variable "subnet_ids" {}
-variable "shared_security_group" {}
-variable "key_name" {}
-variable "monitoring_image" {}
-variable "monitoring_instance_type" {}
-variable "monitoring_server_size" {}
-
 resource "openstack_compute_floatingip_v2" "main" {
   count = "${var.monitoring_server_size}"
   pool = "public"

@@ -1,11 +1,3 @@
-variable "vpc_id" {}
-variable "subnet_ids" {}
-variable "shared_security_group" {}
-variable "key_name" {}
-variable "monitoring_image" {}
-variable "monitoring_instance_type" {}
-variable "monitoring_server_size" {}
-
 resource "aws_security_group" "monitoring_security_group" {
   name = "MonitoringSecurityGroup"
   description = "Enable HTTP access via port 80, Zabbix-agent access"
