@@ -17,12 +17,11 @@ resource "aws_security_group" "monitoring_security_group" {
 }
 
 resource "aws_instance" "monitoring_server" {
-  count = "${var.monitoring_server_size}"
   ami = "${var.monitoring_image}"
   instance_type = "${var.monitoring_instance_type}"
   key_name = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.monitoring_security_group.id}", "${var.shared_security_group}"]
-  subnet_id = "${element(split(", ", var.subnet_ids), count.index)}"
+  subnet_id = "${element(split(", ", var.subnet_ids), 0)}"
   associate_public_ip_address = true
   tags {
     Name = "MonitoringServer"
@@ -30,9 +29,9 @@ resource "aws_instance" "monitoring_server" {
 }
 
 output "cluster_addresses" {
-  value = "${join(", ", aws_instance.monitoring_server.*.private_ip)}"
+  value = "${aws_instance.monitoring_server.private_ip}"
 }
 
 output "frontend_addresses" {
-  value = "${join(", ", aws_instance.monitoring_server.*.public_ip)}"
+  value = "${aws_instance.monitoring_server.public_ip}"
 }

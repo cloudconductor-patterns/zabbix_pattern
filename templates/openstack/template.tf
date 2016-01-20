@@ -1,5 +1,4 @@
 resource "openstack_compute_floatingip_v2" "main" {
-  count = "${var.monitoring_server_size}"
   pool = "public"
 }
 
@@ -21,7 +20,6 @@ resource "openstack_compute_secgroup_v2" "monitoring_security_group" {
 }
 
 resource "openstack_compute_instance_v2" "monitoring_server" {
-  count = "${var.monitoring_server_size}"
   name = "MonitoringServer"
   image_id = "${var.monitoring_image}"
   flavor_name = "${var.monitoring_instance_type}"
@@ -31,16 +29,16 @@ resource "openstack_compute_instance_v2" "monitoring_server" {
   }
   key_pair = "${var.key_name}"
   security_groups = ["${openstack_compute_secgroup_v2.monitoring_security_group.name}", "${var.shared_security_group}"]
-  floating_ip = "${element(openstack_compute_floatingip_v2.main.*.address, count.index)}"
+  floating_ip = "${openstack_compute_floatingip_v2.main.address}"
   network {
-    uuid = "${element(split(", ", var.subnet_ids), count.index)}"
+    uuid = "${element(split(", ", var.subnet_ids), 0)}"
   }
 }
 
 output "cluster_addresses" {
-  value = "${join(", ", openstack_compute_instance_v2.monitoring_server.*.network.0.fixed_ip_v4)}"
+  value = "${openstack_compute_instance_v2.monitoring_server.network.0.fixed_ip_v4}"
 }
 
 output "frontend_addresses" {
-  value = "${join(", ", openstack_compute_floatingip_v2.main.*.address)}"
+  value = "${openstack_compute_floatingip_v2.main.address}"
 }

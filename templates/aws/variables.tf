@@ -17,7 +17,3 @@ variable "monitoring_instance_type" {
   description = "MonitoringServer instance type"
   default = "t2.small"
 }
-variable "monitoring_server_size" {
-  description = "MonitoringServer instance size"
-  default = "1"
-}
