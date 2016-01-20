@@ -1,3 +1,8 @@
+resource "aws_eip" "monitoring_server_eip" {
+  vpc = "true"
+  instance = "${aws_instance.monitoring_server.id}"
+}
+
 resource "aws_security_group" "monitoring_security_group" {
   name = "MonitoringSecurityGroup"
   description = "Enable HTTP access via port 80, Zabbix-agent access"
