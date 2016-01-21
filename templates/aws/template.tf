@@ -1,5 +1,5 @@
 resource "aws_eip" "monitoring_server_eip" {
-  vpc = "true"
+  vpc = true
   instance = "${aws_instance.monitoring_server.id}"
 }
 
