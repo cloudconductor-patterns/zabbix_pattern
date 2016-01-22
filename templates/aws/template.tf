@@ -38,5 +38,5 @@ output "cluster_addresses" {
 }
 
 output "frontend_addresses" {
-  value = "${aws_instance.monitoring_server.public_ip}"
+  value = "${aws_eip.monitoring_server_eip.public_ip}"
 }
