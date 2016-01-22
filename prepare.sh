@@ -78,7 +78,6 @@ setup_python_env() {
   run which pip
   if [ $status -ne 0 ] ; then
     run bash -c "curl -kL https://bootstrap.pypa.io/get-pip.py | python"
-    pip install -U 'pip<8.0.0'
     if [ $status -ne 0 ] ; then
       echo "$output" >&2
       return 1
