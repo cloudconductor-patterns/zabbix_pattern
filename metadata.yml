@@ -7,7 +7,7 @@ version:          "1.1.0"
 url:              "https://github.com/cloudconductor-patterns/zabbix_pattern"
 
 type:      "optional"
-dependencies: ["cloud_conductor_init"]
+dependencies: ["common_network"]
 conflicts: []
 
 providers:
