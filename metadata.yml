@@ -11,8 +11,12 @@ dependencies: ["common_network"]
 conflicts: []
 
 providers:
-    aws: terraform
-    openstack: terraform
+  aws:
+    - cloud_formation
+    - terraform
+  openstack:
+    - cloud_formation
+    - terraform
 
 supports:
   - platform: "centos"
