@@ -7,8 +7,16 @@ version:          "1.1.0"
 url:              "https://github.com/cloudconductor-patterns/zabbix_pattern"
 
 type:      "optional"
-depends:   [zabbix]
+dependencies: ["common_network"]
 conflicts: []
+
+providers:
+  aws:
+    - cloud_formation
+    - terraform
+  openstack:
+    - cloud_formation
+    - terraform
 
 supports:
   - platform: "centos"
