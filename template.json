@@ -162,9 +162,9 @@
     }
   },
   "Outputs" : {
-    "FrontendAddress" : {
+    "ConsulAddresses" : {
       "Value" : { "Ref" : "FrontendEIP" },
-      "Description" : "Frontend DNS name or IP address to access Consul api port from CloudConductor server. This output is required."
+      "Description" : "Address to request from CloudConductor server to consul cluster. This output is required."
     }
   }
 }

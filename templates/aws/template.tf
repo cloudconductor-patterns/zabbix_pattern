@@ -37,6 +37,6 @@ output "cluster_addresses" {
   value = "${aws_instance.monitoring_server.private_ip}"
 }
 
-output "frontend_addresses" {
+output "consul_addresses" {
   value = "${aws_eip.monitoring_server_eip.public_ip}"
 }

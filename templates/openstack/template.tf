@@ -39,6 +39,6 @@ output "cluster_addresses" {
   value = "${openstack_compute_instance_v2.monitoring_server.network.0.fixed_ip_v4}"
 }
 
-output "frontend_addresses" {
+output "consul_addresses" {
   value = "${openstack_compute_floatingip_v2.main.address}"
 }
