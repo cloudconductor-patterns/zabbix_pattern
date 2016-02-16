@@ -10,6 +10,9 @@ type:      "optional"
 dependencies: ["common_network"]
 conflicts: []
 
+roles:
+  - monitoring
+
 providers:
   aws:
     - cloud_formation
