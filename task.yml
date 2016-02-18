@@ -1,6 +1,6 @@
 environments:
   HOME: /root
-  PATH: $PATH:/opt/chefdk/embedded/bin:/opt/chef/embedded/bin:/usr/bin
+  PATH: $PATH:/usr/local/bin:/usr/bin
   ROLE: '{{config.role}}'
   CONSUL_SECRET_KEY: '{{config.token}}'
 
