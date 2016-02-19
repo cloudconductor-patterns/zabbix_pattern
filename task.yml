@@ -45,4 +45,6 @@ tasks:
     description: Execute serverspec
     operations:
       - execute:
-          script: python lib/serverspec.py {{role}}
+          script: |
+            gem install activesupport
+            python lib/serverspec.py {{role}}
