@@ -26,4 +26,9 @@ default['zabbix_part']['jmxremote']['port'] = '12345'
 default['mysql']['version'] = '5.6'
 default['mysql']['enable_utf8'] = 'true'
 
-default['java']['jdk_version'] = '7'
+platform_version = "#{node[:platform_version]}"
+if ("#{node[:platform_family]}" == 'rhel') && (platform_version.to_f < 7.0)
+  default['java']['jdk_version'] = '7'
+else
+  default['java']['jdk_version'] = '8'
+end

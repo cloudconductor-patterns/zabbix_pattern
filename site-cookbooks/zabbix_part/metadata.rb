@@ -5,7 +5,7 @@ license          'Apache v2.0'
 maintainer       'TIS Inc.'
 maintainer_email 'ccndctr@gmail.com'
 
-supports 'centos', '= 6.5'
+supports         'centos', '= 6.5'
 
 depends          'yum-epel'
 depends          'zabbix'
