@@ -24,7 +24,8 @@ when 'ubuntu', 'debian'
     php_packages = %w(php-pear php-dev)
     packages.push(*php_packages)
   end
-  init_template = 'zabbix_server.init.erb'
+  service_templatefile = 'zabbix_server.init.erb'
+  service_template = '/etc/init.d/zabbix_server'
 when 'redhat', 'centos', 'scientific', 'amazon', 'oracle'
   include_recipe 'yum-epel'
 
@@ -55,7 +56,14 @@ when 'redhat', 'centos', 'scientific', 'amazon', 'oracle'
     php_packages = %w(php-pear php-devel)
     packages.push(*php_packages)
   end
-  init_template = 'zabbix_server.init-rh.erb'
+  case node['platform_version'].to_i
+  when '7'
+    service_template = '/etc/systemd/system/multi-user.target.wants/zabbix-server.service'
+    service_templatefile = 'zabbix_server.systemd-rh.erb'
+  else
+    service_template = '/etc/init.d/zabbix_server'
+    service_templatefile = 'zabbix_server.init-rh.erb'
+  end
 end
 
 packages.each do |pck|
@@ -115,8 +123,8 @@ zabbix_source 'install_zabbix_server' do
 end
 
 # Install Init script
-template '/etc/init.d/zabbix_server' do
-  source init_template
+template service_template do
+  source service_templatefile
   owner 'root'
   group 'root'
   mode '755'

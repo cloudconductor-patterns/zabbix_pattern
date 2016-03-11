@@ -1,14 +1,8 @@
-
 include_attribute 'zabbix'
 
-default['zabbix']['server']['version'] = '2.2.11'
-default['zabbix']['server']['java_pollers'] = '3'
-default['zabbix']['server']['java_gateway_enable'] = true
-default['zabbix']['server']['java_gateway_port'] = 10052
-default['zabbix']['web']['install_method'] = 'apache'
-default['zabbix']['web']['fqdn'] = 'localhost'
+default['zabbix']['version'] = '2.2.11'
+
 default['zabbix']['database']['dbpassword'] = 'ilikerandompasswords'
-default['zabbix']['agent']['hostname'] = node['hostname']
 
 default['zabbix_part']['auto_registration']['template'] = 'Template OS Linux'
 default['zabbix_part']['agent']['include_conf_name'] = 'HostMetadata.conf'

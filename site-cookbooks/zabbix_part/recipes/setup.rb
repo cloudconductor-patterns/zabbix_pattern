@@ -17,7 +17,6 @@ include_recipe 'zabbix::server'
 include_recipe 'zabbix::web'
 include_recipe 'apache2::mod_php5'
 
-
 zabbix_server = node
 
 ruby_block 'restart_apache2' do
