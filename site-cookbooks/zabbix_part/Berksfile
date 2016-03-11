@@ -1,3 +1,3 @@
 source 'https://supermarket.getchef.com'
 
-cookbook 'zabbix'
+cookbook 'zabbix', git: 'https://github.com/bsmile/zabbix.git', tag: 'cloudconductor'
