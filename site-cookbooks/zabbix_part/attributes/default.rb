@@ -1,7 +1,7 @@
 
 include_attribute 'zabbix'
 
-default['zabbix']['server']['version'] = '2.2.10'
+default['zabbix']['server']['version'] = '2.2.11'
 default['zabbix']['server']['java_pollers'] = '3'
 default['zabbix']['server']['java_gateway_enable'] = true
 default['zabbix']['server']['java_gateway_port'] = 10052
@@ -26,9 +26,10 @@ default['zabbix_part']['jmxremote']['port'] = '12345'
 default['mysql']['version'] = '5.6'
 default['mysql']['enable_utf8'] = 'true'
 
-platform_version = "#{node[:platform_version]}"
-if ("#{node[:platform_family]}" == 'rhel') && (platform_version.to_f < 7.0)
-  default['java']['jdk_version'] = '7'
-else
-  default['java']['jdk_version'] = '8'
-end
+default['java']['jdk_version'] =
+  case node[:playform_family]
+  when 'rhel'
+    node['platform_version'].to_f >= 7.0 ? '7' : '8'
+  else
+    '7'
+  end
