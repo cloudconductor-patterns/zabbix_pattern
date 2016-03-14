@@ -9,9 +9,9 @@
 
 
 include_recipe 'build-essential::default'
-include_recipe 'database::mysql'
-include_recipe 'mysql::client'
 include_recipe 'mysql::server'
+include_recipe 'mysql::client'
+include_recipe 'database::mysql'
 include_recipe 'zabbix_part'
 include_recipe 'zabbix_part::database'
 include_recipe 'zabbix_part::server'
