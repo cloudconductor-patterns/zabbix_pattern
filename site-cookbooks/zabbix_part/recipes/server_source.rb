@@ -7,8 +7,8 @@
 # Apache 2.0
 #
 
-include_recipe 'zabbix::common'
-include_recipe 'zabbix::server_common'
+include_recipe 'zabbix_part::common'
+include_recipe 'zabbix_part::server_common'
 
 packages = []
 case node['platform']
@@ -108,12 +108,10 @@ end
 
 node.normal['zabbix']['server']['configure_options'] = configure_options
 
-zabbix_source 'install_zabbix_server' do
+zabbix_part_source 'install_zabbix_part_server' do
   branch node['zabbix']['server']['branch']
   version node['zabbix']['server']['version']
   source_url node['zabbix']['server']['source_url']
-  branch node['zabbix']['server']['branch']
-  version node['zabbix']['server']['version']
   code_dir node['zabbix']['src_dir']
   target_dir "zabbix-#{node['zabbix']['server']['version']}"
   install_dir node['zabbix']['install_dir']
@@ -158,5 +156,5 @@ end
 
 # Configure the Java Gateway
 if node['zabbix']['server']['java_gateway_enable'] == true
-  include_recipe 'zabbix::java_gateway'
+  include_recipe 'zabbix_part::java_gateway'
 end

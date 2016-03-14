@@ -1,4 +1,8 @@
 DEPENDENCIES
+  zabbix
+    git: https://github.com/bsmile/zabbix.git
+    revision: fc5ead2957ff05757126c7ffc7d9bb963c63eeaf
+    tag: test/jmx-monitoring
   zabbix_part
     path: site-cookbooks/zabbix_part
 
@@ -37,6 +41,9 @@ GRAPH
     apt (>= 0.0.0)
   mysql (5.6.3)
     yum-mysql-community (>= 0.0.0)
+  mysql-chef_gem (0.0.5)
+    build-essential (>= 0.0.0)
+    mysql (>= 0.0.0)
   nginx (2.7.6)
     apt (~> 2.2)
     bluepill (~> 2.3)
@@ -85,7 +92,7 @@ GRAPH
     yum (~> 3.10.0)
   yum-mysql-community (0.1.21)
     yum (>= 3.2)
-  zabbix_part (0.0.1)
+  zabbix (0.8.0)
     apache2 (>= 1.0.8)
     ark (>= 0.7.2)
     chocolatey (>= 0.0.0)
@@ -100,3 +107,9 @@ GRAPH
     ufw (>= 0.6.1)
     yum (>= 0.0.0)
     yum-epel (>= 0.0.0)
+  zabbix_part (0.0.1)
+    apache2 (>= 0.0.0)
+    database (= 2.3.1)
+    mysql (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+    zabbix (>= 0.0.0)

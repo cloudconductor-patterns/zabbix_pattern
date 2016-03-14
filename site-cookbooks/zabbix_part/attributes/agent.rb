@@ -1,5 +1,5 @@
 # Load default.rb to use node['zabbix']['etc_dir']
-include_attribute 'zabbix'
+include_attribute 'zabbix_part'
 
 default['zabbix']['agent']['install']           = true
 default['zabbix']['agent']['service_state']     = [:start, :enable]

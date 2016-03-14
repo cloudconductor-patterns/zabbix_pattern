@@ -1,9 +1,12 @@
-include_recipe 'zabbix::common'
+include_recipe 'zabbix_part::common'
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
+include_recipe 'zabbix_part::database'
+#include_recipe 'database'
 include_recipe 'database::mysql'
 include_recipe 'mysql::client'
+include_recipe 'mysql::server'
 
 # Generates passwords if they aren't already set
 # This is INSECURE because node.normal persists the passwords to the chef
@@ -21,7 +24,7 @@ when 'rds_mysql'
   root_username       = node['zabbix']['database']['rds_master_username']
   root_password       = node['zabbix']['database']['rds_master_password']
   allowed_user_hosts  = '%'
-  provider = Chef::Provider::ZabbixDatabaseMySql
+  provider = Chef::Provider::ZabbixPartDatabaseMySql
 when 'mysql'
   unless node['mysql']['server_root_password']
     node.normal['mysql']['server_root_password'] = secure_password
@@ -29,7 +32,7 @@ when 'mysql'
   root_username       = 'root'
   root_password       = node['mysql']['server_root_password']
   allowed_user_hosts  = node['zabbix']['database']['allowed_user_hosts']
-  provider = Chef::Provider::ZabbixDatabaseMySql
+  provider = Chef::Provider::ZabbixPartDatabaseMySql
 when 'postgres'
   unless node['postgresql']['password']['postgres']
     node.normal['postgresql']['password']['postgres'] = secure_password
@@ -38,7 +41,7 @@ when 'postgres'
   root_password       = node['postgresql']['password']['postgres']
   provider = Chef::Provider::ZabbixDatabasePostgres
 when 'oracle'
-  # No oracle database installation or configuration currently done
+ # No oracle database installation or configuration currently done
   # This recipe expects a fully configured Oracle DB with a Zabbix
   # user + schema. The instant client is just for compiling php-oci8
   # and Zabbix itself
@@ -50,7 +53,7 @@ when 'oracle'
   provider = Chef::Provider::ZabbixDatabaseOracle
 end
 
-zabbix_database node['zabbix']['database']['dbname'] do
+zabbix_part_database node['zabbix']['database']['dbname'] do
   provider provider
   host node['zabbix']['database']['dbhost']
   port node['zabbix']['database']['dbport'].to_i

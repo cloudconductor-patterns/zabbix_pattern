@@ -1,3 +1,5 @@
-source 'https://supermarket.getchef.com'
+ource 'https://supermarket.getchef.com'
 
+cookbook 'mysql::server'
+cookbook 'database'
 cookbook metadata

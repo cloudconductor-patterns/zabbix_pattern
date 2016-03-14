@@ -1,4 +1,4 @@
-include_attribute 'zabbix'
+include_attribute 'zabbix_part'
 
 default['zabbix']['server']['version']                = node['zabbix']['version']
 default['zabbix']['server']['branch']                 = 'ZABBIX%20Latest%20Stable'

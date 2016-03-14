@@ -74,4 +74,4 @@ template "#{node['zabbix']['agent']['include_dir']}/#{node['zabbix_part']['agent
 end
 
 include_recipe 'yum-epel'
-include_recipe 'zabbix::agent'
+include_recipe 'zabbix_part::agent'

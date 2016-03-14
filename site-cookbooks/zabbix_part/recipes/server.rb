@@ -7,4 +7,4 @@
 # Apache 2.0
 #
 
-include_recipe "zabbix::server_#{node['zabbix']['server']['install_method']}"
+include_recipe "zabbix_part::server_#{node['zabbix']['server']['install_method']}"

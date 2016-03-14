@@ -52,7 +52,7 @@ service 'zabbix-java-gateway' do
 end
 
 # Dummy file saying look at /etc/zabbix/zabbix_java_gateway.conf
-cookbook_file '#{['node']['zabbix']['install_dir']}/sbin/zabbix_java/settings.sh' do
+cookbook_file '#{[''node''][''zabbix''][''install_dir'']}/sbin/zabbix_java/settings.sh' do
   source 'zabbix-java-gateway/settings.sh'
   owner 'zabbix'
   group 'zabbix'
