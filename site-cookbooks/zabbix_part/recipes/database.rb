@@ -3,7 +3,7 @@ include_recipe 'zabbix_part::common'
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 
 include_recipe 'zabbix_part::database'
-#include_recipe 'database'
+# include_recipe 'database'
 include_recipe 'database::mysql'
 include_recipe 'mysql::client'
 include_recipe 'mysql::server'
@@ -41,7 +41,7 @@ when 'postgres'
   root_password       = node['postgresql']['password']['postgres']
   provider = Chef::Provider::ZabbixDatabasePostgres
 when 'oracle'
- # No oracle database installation or configuration currently done
+  # No oracle database installation or configuration currently done
   # This recipe expects a fully configured Oracle DB with a Zabbix
   # user + schema. The instant client is just for compiling php-oci8
   # and Zabbix itself

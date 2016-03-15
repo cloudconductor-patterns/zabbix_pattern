@@ -8,11 +8,12 @@ case node['platform_family']
 when 'windows'
   if ENV['ProgramFiles'] == ENV['ProgramFiles(x86)']
     # if user has never logged into an interactive session then ENV['homedrive'] will be nil
-    default['zabbix']['etc_dir']    = ::File.join((ENV['homedrive'] || 'C:'), 'Program Files', 'Zabbix Agent')  else
-    default['zabbix']['etc_dir']    = ::File.join(ENV['ProgramFiles'], 'Zabbix Agent')
+    default['zabbix']['etc_dir'] = ::File.join((ENV['homedrive'] || 'C:'), 'Program Files', 'Zabbix Agent')
+  else
+    default['zabbix']['etc_dir'] = ::File.join(ENV['ProgramFiles'], 'Zabbix Agent')
   end
 else
-  default['zabbix']['etc_dir']      = '/etc/zabbix'
+  default['zabbix']['etc_dir'] = '/etc/zabbix'
 end
 default['zabbix']['install_dir']  = '/opt/zabbix'
 default['zabbix']['web_dir']      = '/opt/zabbix/web'

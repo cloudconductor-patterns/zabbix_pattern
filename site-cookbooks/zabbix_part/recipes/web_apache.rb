@@ -56,8 +56,8 @@ template "#{node['zabbix']['src_dir']}/zabbix-#{node['zabbix']['server']['versio
   group 'root'
   mode '754'
   variables(
-    :database => node['zabbix']['database'],
-    :server => node['zabbix']['server']
+    database: node['zabbix']['database'],
+    server: node['zabbix']['server']
   )
 end
 

@@ -10,9 +10,9 @@ include_recipe 'java'
 template '/etc/zabbix/zabbix_java_gateway.conf' do
   source 'zabbix-java-gateway/zabbix_java_gateway.conf.erb'
   variables(
-    :java_gateway_listen_ip => node['zabbix']['server']['java_gateway_listen_ip'],
-    :java_gateway_listen_port => node['zabbix']['server']['java_gateway_listen_port'],
-    :java_gateway_pollers => node['zabbix']['server']['java_gateway_pollers']
+    java_gateway_listen_ip: node['zabbix']['server']['java_gateway_listen_ip'],
+    java_gateway_listen_port: node['zabbix']['server']['java_gateway_listen_port'],
+    java_gateway_pollers: node['zabbix']['server']['java_gateway_pollers']
   )
   owner 'zabbix'
   group 'zabbix'
@@ -47,12 +47,12 @@ end
 
 service 'zabbix-java-gateway' do
   service_name 'zabbix-java-gateway'
-  supports :restart => true, :status => true, :reload => true
+  supports restart: true, status: true, reload: true
   action [:enable, :start]
 end
 
 # Dummy file saying look at /etc/zabbix/zabbix_java_gateway.conf
-cookbook_file '#{[''node''][''zabbix''][''install_dir'']}/sbin/zabbix_java/settings.sh' do
+cookbook_file "#{node['zabbix']['install_dir']}/sbin/zabbix_java/settings.sh" do
   source 'zabbix-java-gateway/settings.sh'
   owner 'zabbix'
   group 'zabbix'

@@ -1,5 +1,5 @@
 action :import do
-  filename = IO::File.basename(new_resource.source)
+  filename = ::File.basename(new_resource.source)
   temporary_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
 
   f = cookbook_file temporary_path do

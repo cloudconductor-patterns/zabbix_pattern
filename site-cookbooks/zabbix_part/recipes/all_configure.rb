@@ -23,11 +23,11 @@ node['cloudconductor']['servers'].each do |svr_name, svr|
             not_if "grep #{node['hostname']} /etc/hosts"
             user 'root'
             group 'root'
-            command "sed -i -e '1s/$/ #{node['''hostname''']}/g' /etc/hosts"
+            command "sed -i -e '1s/$/ #{node['hostname']}/g' /etc/hosts"
             action :run
           end
 
-          jmxremote_port = ' -Dcom.sun.management.jmxremote.port=#{node['zabbix_part']['jmxremote']['port']}'
+          jmxremote_port = " -Dcom.sun.management.jmxremote.port=#{node['zabbix_part']['jmxremote']['port']}"
           jmxremote_rmi_port = ' -Dcom.sun.management.jmxremote.rmi.port=12346'
           jmxremote_authenticate = ' -Dcom.sun.management.jmxremote.authenticate=false'
           jmxremote_ssl = ' -Dcom.sun.management.jmxremote.ssl=false'

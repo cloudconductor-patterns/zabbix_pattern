@@ -12,10 +12,10 @@ class Chef
       # @option connection_spec [String] :password The password for your user
       #
       # @yieldparam [ZabbixApi] connection The connection to the Zabbix server
-      def with_connection(connection_spec, &block)
+      def with_connection(connection_spec)
         validate_connection(connection_spec)
         connection = ZabbixApi.connect(connection_spec)
-        block.call(connection)
+        yield(connection)
       end
 
       def validate_connection(connection_spec)

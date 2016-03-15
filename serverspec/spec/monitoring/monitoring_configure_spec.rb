@@ -23,28 +23,28 @@ describe 'zabbix server example' do
 
   params = property[:consul_parameters]
 
-  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:fqdn]
-    server = params[:zabbix][:web][:fqdn]
-  else
-    server = 'localhost'
-  end
+  server = if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:fqdn]
+             params[:zabbix][:web][:fqdn]
+           else
+             'localhost'
+           end
 
-  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:login]
-    user = params[:zabbix][:web][:login]
-  else
-    user = 'admin'
-  end
-  if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:password]
-    passwd = params[:zabbix][:web][:password]
-  else
-    passwd = 'zabbix'
-  end
+  user = if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:login]
+           params[:zabbix][:web][:login]
+         else
+           'admin'
+         end
+  passwd = if params[:zabbix] && params[:zabbix][:web] && params[:zabbix][:web][:password]
+             params[:zabbix][:web][:password]
+           else
+             'zabbix'
+           end
 
   zabbix_client = CloudConductor::ZabbixClient.new(server, user, passwd)
   ENV['http_proxy'] = http_proxy
   servers = property[:servers]
   servers.each_key do |hostname|
-    result = zabbix_client.exist_host("#{hostname}")
+    result = zabbix_client.exist_host(hostname.to_s)
     it "#{hostname} is registered in zabbix" do
       result.should be_truthy
     end

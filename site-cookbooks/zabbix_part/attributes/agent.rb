@@ -13,13 +13,13 @@ default['zabbix']['agent']['hostname']          = node['hostname']
 default['zabbix']['agent']['configure_options'] = ['--with-libcurl']
 default['zabbix']['agent']['include_dir']       = ::File.join(node['zabbix']['etc_dir'], 'agent_include')
 default['zabbix']['agent']['enable_remote_commands'] = true
-default['zabbix']['agent']['listen_port']       = '10050'
-default['zabbix']['agent']['timeout']       	= '3'
+default['zabbix']['agent']['listen_port'] = '10050'
+default['zabbix']['agent']['timeout']	= '3'
 
 default['zabbix']['agent']['config_file']               = ::File.join(node['zabbix']['etc_dir'], 'zabbix_agentd.conf')
 default['zabbix']['agent']['userparams_config_file']    = ::File.join(node['zabbix']['agent']['include_dir'], 'user_params.conf')
 
-default['zabbix']['agent']['groups']            = ['chef-agent']
+default['zabbix']['agent']['groups'] = ['chef-agent']
 
 case node['platform_family']
 when 'rhel', 'debian'

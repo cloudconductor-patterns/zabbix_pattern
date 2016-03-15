@@ -7,8 +7,8 @@
 # Apache 2.0
 #
 
-include_recipe 'zabbix_part::common'
 include_recipe 'zabbix_part::server_common'
+include_recipe 'zabbix_part::common'
 
 packages = []
 case node['platform']
@@ -37,19 +37,19 @@ when 'redhat', 'centos', 'scientific', 'amazon', 'oracle'
   case node['zabbix']['database']['install_method']
   when 'mysql', 'rds_mysql'
     php_packages =
-    if node['platform_version'].to_i < 6
-      %w(php53-mysql php53-gd php53-bcmath php53-mbstring php53-xml)
-    else
-      %w(php-mysql php-gd php-bcmath php-mbstring php-xml)
-    end
+      if node['platform_version'].to_i < 6
+        %w(php53-mysql php53-gd php53-bcmath php53-mbstring php53-xml)
+      else
+        %w(php-mysql php-gd php-bcmath php-mbstring php-xml)
+      end
     packages.push(*php_packages)
   when 'postgres'
     php_packages =
-    if node['platform_version'].to_i < 6
-      %w(php5-pgsql php5-gd php5-xml)
-    else
-      %w(php-pgsql php-gd php-bcmath php-mbstring php-xml)
-    end
+      if node['platform_version'].to_i < 6
+        %w(php5-pgsql php5-gd php5-xml)
+      else
+        %w(php-pgsql php-gd php-bcmath php-mbstring php-xml)
+      end
     packages.push(*php_packages)
   # Oracle oci8 PECL package installed below
   when 'oracle'
@@ -80,7 +80,7 @@ php_pear 'oci8' do
 end
 
 configure_options = node['zabbix']['server']['configure_options'].dup
-configure_options = (configure_options || Array.new).delete_if do |option|
+configure_options = (configure_options || []).delete_if do |option|
   option.match(/\s*--prefix(\s|=).+/)
 end
 case node['zabbix']['database']['install_method']
@@ -136,21 +136,21 @@ template "#{node['zabbix']['etc_dir']}/zabbix_server.conf" do
   group 'root'
   mode '644'
   variables(
-    :dbhost             => node['zabbix']['database']['dbhost'],
-    :dbname             => node['zabbix']['database']['dbname'],
-    :dbuser             => node['zabbix']['database']['dbuser'],
-    :dbpassword         => node['zabbix']['database']['dbpassword'],
-    :dbport             => node['zabbix']['database']['dbport'],
-    :java_gateway       => node['zabbix']['server']['java_gateway'],
-    :java_gateway_port  => node['zabbix']['server']['java_gateway_port'],
-    :java_pollers       => node['zabbix']['server']['java_pollers']
+    dbhost: node['zabbix']['database']['dbhost'],
+    dbname: node['zabbix']['database']['dbname'],
+    dbuser: node['zabbix']['database']['dbuser'],
+    dbpassword: node['zabbix']['database']['dbpassword'],
+    dbport: node['zabbix']['database']['dbport'],
+    java_gateway: node['zabbix']['server']['java_gateway'],
+    java_gateway_port: node['zabbix']['server']['java_gateway_port'],
+    java_pollers: node['zabbix']['server']['java_pollers']
   )
   notifies :restart, 'service[zabbix_server]', :delayed
 end
 
 # Define zabbix_agentd service
 service 'zabbix_server' do
-  supports :status => true, :start => true, :stop => true, :restart => true
+  supports status: true, start: true, stop: true, restart: true
   action [:start, :enable]
 end
 

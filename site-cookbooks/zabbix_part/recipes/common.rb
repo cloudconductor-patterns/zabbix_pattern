@@ -7,9 +7,30 @@
 # Apache 2.0
 #
 
+if node['zabbix']['login']
+  # Create zabbix group
+  group node['zabbix']['group'] do
+    gid node['zabbix']['gid']
+    if node['zabbix']['gid'].nil?
+      action :nothing
+    else
+      action :create
+    end
+  end
+
+  # Create zabbix User
+  user node['zabbix']['login'] do
+    comment 'zabbix User'
+    home node['zabbix']['install_dir']
+    shell node['zabbix']['shell']
+    uid node['zabbix']['uid']
+    gid node['zabbix']['gid']
+  end
+end
+
 # Define root owned folders
 root_dirs = [
-  node['zabbix']['etc_dir'],
+  node['zabbix']['etc_dir']
 ]
 
 # Create root folders
@@ -18,7 +39,7 @@ when 'windows'
   root_dirs.each do |dir|
     directory dir do
       owner 'Administrator'
-      rights :read, 'Everyone', :applies_to_children => true
+      rights :read, 'Everyone', applies_to_children: true
       recursive true
     end
   end

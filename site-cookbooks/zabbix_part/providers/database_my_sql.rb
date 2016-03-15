@@ -4,7 +4,7 @@ end
 
 def load_current_resource
   require 'mysql'
-  @current_resource = Chef::Resource::ZabbixDatabase.new(@new_resource.dbname)
+  @current_resource = Chef::Resource::ZabbixPartDatabase.new(@new_resource.dbname)
   @current_resource.dbname(@new_resource.dbname)
   @current_resource.host(@new_resource.host)
   @current_resource.port(@new_resource.port)
@@ -52,10 +52,10 @@ def create_new_database
   #     :password => new_resource.password
   #   }
   root_connection = {
-    :host => new_resource.host,
-    :port => new_resource.port,
-    :username => new_resource.root_username,
-    :password => new_resource.root_password
+    host: new_resource.host,
+    port: new_resource.port,
+    username: new_resource.root_username,
+    password: new_resource.root_password
   }
 
   zabbix_part_source 'extract_zabbix_part_database' do
@@ -104,14 +104,14 @@ def create_new_database
                   [
                     ['zabbix_populate_schema', ::File.join(zabbix_path, 'create', 'schema', 'mysql.sql')],
                     ['zabbix_populate_data', ::File.join(zabbix_path, 'create', 'data', 'data.sql')],
-                    ['zabbix_populate_image', ::File.join(zabbix_path, 'create', 'data', 'images_mysql.sql')],
+                    ['zabbix_populate_image', ::File.join(zabbix_path, 'create', 'data', 'images_mysql.sql')]
                   ]
                 else
                   Chef::Log.info 'Version 2.x branch of zabbix in use'
                   [
                     ['zabbix_populate_schema', ::File.join(zabbix_path, 'database', 'mysql', 'schema.sql')],
                     ['zabbix_populate_data', ::File.join(zabbix_path, 'database', 'mysql', 'data.sql')],
-                    ['zabbix_populate_image', ::File.join(zabbix_path, 'database', 'mysql', 'images.sql')],
+                    ['zabbix_populate_image', ::File.join(zabbix_path, 'database', 'mysql', 'images.sql')]
                   ]
                 end
 

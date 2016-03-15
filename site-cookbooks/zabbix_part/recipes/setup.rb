@@ -7,14 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
 include_recipe 'build-essential::default'
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
-include_recipe 'zabbix_part'
 include_recipe 'zabbix_part::database'
 include_recipe 'zabbix_part::server'
+include_recipe 'zabbix_part'
 include_recipe 'zabbix_part::web'
 include_recipe 'apache2::mod_php5'
 
@@ -37,7 +36,7 @@ end
 
 zabbix_part_import_template 'zbx_template.xml' do
   zabbix_fqdn zabbix_server['zabbix']['web']['fqdn']
-  login  zabbix_server['zabbix']['web']['login']
+  login zabbix_server['zabbix']['web']['login']
   password zabbix_server['zabbix']['web']['password']
   source 'zbx_template.xml'
 end
