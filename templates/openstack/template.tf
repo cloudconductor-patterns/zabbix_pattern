@@ -28,7 +28,7 @@ resource "openstack_compute_instance_v2" "monitoring_server" {
     Name = "MonitoringServer"
   }
   key_pair = "${var.key_name}"
-  security_groups = ["${openstack_compute_secgroup_v2.monitoring_security_group.name}", "${var.shared_security_group}"]
+  security_groups = ["${openstack_compute_secgroup_v2.monitoring_security_group.name}", "${var.shared_security_group_name}"]
   floating_ip = "${openstack_compute_floatingip_v2.main.address}"
   network {
     uuid = "${element(split(", ", var.subnet_ids), 0)}"

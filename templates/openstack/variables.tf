@@ -4,6 +4,9 @@ variable "subnet_ids" {
 variable "shared_security_group" {
   description = "SecurityGroup ID which is created by common network pattern."
 }
+variable "shared_security_group_name" {
+  description = "SecurityGroup name which is created by common network pattern."
+}
 variable "key_name" {
   description = "Name of an existing EC2/OpenStack KeyPair to enable SSH access to the instances."
 }
