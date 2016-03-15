@@ -30,7 +30,7 @@ action :import do
     password: new_resource.password
   }
 
-  zabbix_api_call new_resource.name do
+  zabbix_part_api_call new_resource.name do
     action :call
     server_connection server_connection
     method 'configuration.import'
