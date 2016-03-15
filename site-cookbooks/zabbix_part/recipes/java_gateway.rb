@@ -48,7 +48,7 @@ end
 service 'zabbix-java-gateway' do
   service_name 'zabbix-java-gateway'
   supports restart: true, status: true, reload: true
-  action [:enable, :start]
+  action [:enable, :restart]
 end
 
 # Dummy file saying look at /etc/zabbix/zabbix_java_gateway.conf
