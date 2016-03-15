@@ -17,7 +17,6 @@ template '/etc/zabbix/zabbix_java_gateway.conf' do
   owner 'zabbix'
   group 'zabbix'
   mode '0644'
-  notifies :restart, 'service[zabbix-java-gateway]'
 end
 
 cookbook_file '/etc/zabbix/zabbix_java_gateway.logback.xml' do
@@ -25,7 +24,6 @@ cookbook_file '/etc/zabbix/zabbix_java_gateway.logback.xml' do
   owner 'zabbix'
   group 'zabbix'
   mode '0644'
-  notifies :restart, 'service[zabbix-java-gateway]'
 end
 
 case node['platform_family']
@@ -51,7 +49,6 @@ service 'zabbix-java-gateway' do
   action [:enable, :restart]
 end
 
-# Dummy file saying look at /etc/zabbix/zabbix_java_gateway.conf
 cookbook_file "#{node['zabbix']['install_dir']}/sbin/zabbix_java/settings.sh" do
   source 'zabbix-java-gateway/settings.sh'
   owner 'zabbix'

@@ -111,6 +111,7 @@ case "$1" in
         fi
         ;;
     restart)
+        sleep 5
         $0 stop
         sleep 5
         $0 start
@@ -118,6 +119,7 @@ case "$1" in
         ;;
     condrestart)
         if [ -n "$PID_FILE" -a -e "$PID_FILE" ]; then
+            sleep 5
             $0 stop
             sleep 5
             $0 start
