@@ -5,7 +5,7 @@ environments:
   CONSUL_SECRET_KEY: '{{config.token}}'
 
 default:
-  timeout: 1800
+  timeout: 3600
   chef:
     attribute_keys:
       - cloudconductor
