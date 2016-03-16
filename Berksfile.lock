@@ -70,8 +70,6 @@ GRAPH
     packagecloud (>= 0.0.0)
   seven_zip (2.0.0)
     windows (>= 1.2.2)
-  ufw (1.0.0)
-    firewall (>= 2.0)
   windows (1.39.2)
     chef_handler (>= 0.0.0)
   xfs (2.0.1)
