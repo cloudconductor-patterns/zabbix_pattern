@@ -1,6 +1,6 @@
 include_attribute 'zabbix_part'
 
-default['zabbix']['version'] = '2.2.11'
+default['zabbix']['version'] = '2.2.9'
 
 default['zabbix']['database']['dbpassword'] = 'ilikerandompasswords'
 
