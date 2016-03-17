@@ -5,7 +5,7 @@ default['zabbix']['agent']['install']           = true
 default['zabbix']['agent']['service_state']     = [:start, :enable]
 
 default['zabbix']['agent']['branch']            = 'ZABBIX%20Latest%20Stable'
-default['zabbix']['agent']['version']           = node['zabbix']['version']
+default['zabbix']['agent']['version']           = '2.2.9'
 default['zabbix']['agent']['source_url']        = nil
 default['zabbix']['agent']['servers']           = []
 default['zabbix']['agent']['servers_active']    = []
