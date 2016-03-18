@@ -1,0 +1,49 @@
+---
+driver:
+  name: docker
+  dockerfile: test/platforms/Dockerfile
+  cc_pattern: "<%= File.basename(Dir.pwd) %>"
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6.6
+    driver:
+      image: centos:centos6.6
+      run_command: "/sbin/init"
+  - name: centos-7
+    driver:
+      image: centos:centos7
+      privileged: true
+      run_command: "/sbin/init"
+
+suites:
+  - name: monitoring_setup
+    driver:
+      cc_role: 'monitoring'
+    run_list:
+      - role[monitoring_setup]
+    container_name: "monitoring_setup"
+    attributes:
+  - name: monitoring_configure
+    driver:
+      cc_role: 'monitoring'
+    run_list:
+      - role[monitoring_setup]
+      - role[all_configure]
+    attributes:
+      cloudconductor:
+        servers:
+          ap_01:
+            private_ip: '127.0.0.1'
+            roles: 'ap'
+            weight: '0'
+          db_01:
+            private_ip: '127.0.0.2'
+            roles: 'db'
+            weight: '0'
+          db_01:
+            private_ip: '127.0.0.3'
+            roles: 'web'
+            weight: '0'

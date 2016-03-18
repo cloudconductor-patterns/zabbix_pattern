@@ -13,10 +13,6 @@ describe 'zabbix_part::setup' do
     chef_run.converge(described_recipe)
   end
 
-  it 'install mysql-devel package' do
-    expect(chef_run).to install_package('mysql-devel')
-  end
-
   it 'include database::mysql recipe' do
     expect(chef_run).to include_recipe 'database::mysql'
   end
@@ -25,24 +21,24 @@ describe 'zabbix_part::setup' do
     expect(chef_run).to include_recipe 'mysql::server'
   end
 
-  it 'include zabbix::default recipe' do
-    expect(chef_run).to include_recipe 'zabbix'
+  it 'include zabbix_part::default recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part'
   end
 
-  it 'include zabbix::database recipe' do
-    expect(chef_run).to include_recipe 'zabbix::database'
+  it 'include zabbix_part::database recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part::database'
   end
 
-  it 'include zabbix::server recipe' do
-    expect(chef_run).to include_recipe 'zabbix::server'
+  it 'include zabbix_part::server recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part::server'
   end
 
-  it 'include zabbix::web recipe' do
-    expect(chef_run).to include_recipe 'zabbix::web'
+  it 'include zabbix_part::web recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part::web'
   end
 
-  it 'include zabbix::java_gateway recipe' do
-    expect(chef_run).to include_recipe 'zabbix::java_gateway'
+  it 'include zabbix_part::java_gateway recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part::java_gateway'
   end
 
   it 'include apache2::mod_php5 recipe' do

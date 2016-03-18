@@ -1,5 +1,5 @@
 action :import do
-  filename = IO::File.basename(new_resource.source)
+  filename = ::File.basename(new_resource.source)
   temporary_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
 
   f = cookbook_file temporary_path do
@@ -30,7 +30,7 @@ action :import do
     password: new_resource.password
   }
 
-  zabbix_api_call new_resource.name do
+  zabbix_part_api_call new_resource.name do
     action :call
     server_connection server_connection
     method 'configuration.import'
