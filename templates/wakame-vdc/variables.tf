@@ -14,3 +14,11 @@ variable "key_name" {
 variable "monitoring_image" {
   description = "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor."
 }
+variable "monitoring_cpu_cores" {
+  description = "MonitoringServer Cpu Cores"
+  default = "1"
+}
+variable "monitoring_memory_size" {
+  description = "MonitoringServer Memory Size"
+  default = "2048"
+}
