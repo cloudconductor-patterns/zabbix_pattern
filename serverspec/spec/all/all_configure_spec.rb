@@ -16,11 +16,9 @@ describe 'connect jmx_server' do
       when 'ap' then
         if File.exist?('/etc/sysconfig/tomcat7')
           describe "#{svr_name} access check" do
-            describe command("hping3 -S #{server[:private_ip]} -p 12345 -c 5") do
-              its(:stdout) { should match '/sport=12345 flags=SA/' }
-            end
-            describe command("hping3 -S #{server[:private_ip]} -p 12346 -c 5") do
-              its(:stdout) { should match '/sport=12346 flags=SA/' }
+            describe host(server[:private_ip]) do
+              it { should be_reachable.with(port: 12345) }
+              it { should be_reachable.with(port: 12346) }
             end
           end
         end
@@ -35,8 +33,8 @@ describe 'connect zbx_server' do
   servers.each do |svr_name, server|
     next unless server[:roles] == 'monitoring'
     describe "#{svr_name} access check" do
-      describe command("hping3 -S #{server[:private_ip]} -p 10051 -c 5") do
-        its(:stdout) { should match '/sport=10051 flags=SA/' }
+      describe host(server[:private_ip]) do
+        it { should be_reachable.with(port: 10051) }
       end
     end
   end
