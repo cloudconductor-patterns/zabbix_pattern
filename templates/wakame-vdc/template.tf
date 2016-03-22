@@ -6,8 +6,8 @@ resource "wakamevdc_security_group" "monitoring_security_group" {
 
 resource "wakamevdc_instance" "monitoring_server" {
   display_name = "MonitoringServer"
-  cpu_cores = 1
-  memory_size = 2048
+  cpu_cores = "${var.monitoring_cpu_cores}"
+  memory_size = "${var.monitoring_memory_size}"
   image_id = "${var.monitoring_image}"
   hypervisor = "kvm"
   ssh_key_id = "${var.key_name}"

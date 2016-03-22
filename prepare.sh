@@ -72,6 +72,7 @@ install_berkshelf() {
 install_serverspec() {
   set_ruby_path
 
+  yum install -y nc
   run bash -c "gem list | grep serverspec"
   if [ $status -ne 0 ]; then
     gem install serverspec
