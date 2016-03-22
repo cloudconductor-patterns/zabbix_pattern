@@ -1,6 +1,7 @@
 require 'forwardable'
 
 class Chef
+  # rubocop:disable ModuleLength
   module Zabbix
     module API
       class GraphItem
@@ -11,14 +12,17 @@ class Chef
             Chef::Application.fatal! ':item_template or :host is required'
           end
           Chef::Application.fatal! ':item_key is required' if options[:item_key].to_s.empty?
-          Chef::Application.fatal! ':calc_function must be a Zabbix::API::GraphItemCalcFunction' unless options[:calc_function].is_a?(GraphItemCalcFunction)
+          fatal_msg = ':calc_function must be a Zabbix::API::GraphItemCalcFunction'
+          Chef::Application.fatal! fatal_msg unless options[:calc_function].is_a?(GraphItemCalcFunction)
           Chef::Application.fatal! ':type must be a Zabbix::API::GraphItemType' unless options[:type].is_a?(GraphItemType)
           @options = options
         end
 
         def to_hash
           unless @options[:itemid]
+            # rubocop:disable LineLength
             Chef::Application.fatal! ":itemid was never set. This probably means that an item with key '#{@options[:item_key]}' couldn't be found on template '#{@options[:item_template]}'"
+            # rubocop:enable LineLength
           end
           {
             itemid: @options[:itemid],
@@ -33,9 +37,11 @@ class Chef
       class HostInterface
         class << self
           def from_api_response(options)
+            # rubocop:disable LineLength
             options['type'] = Zabbix::API::HostInterfaceType.enumeration_values.find { |value| value[1].value == options['type'].to_i }[1]
             options['main'] = (options['main'].to_i == 1)
             options['useip'] = (options['useip'].to_i == 1)
+            # rubocop:enable LineLength
             new(options)
           end
         end
@@ -78,9 +84,11 @@ class Chef
         def validate!(options)
           options = symbolize(options)
           search = options[:useip] ? :ip : :dns
+          # rubocop:disable LineLength
           Chef::Application.fatal!("#{search} must be set when :useip is #{options[:useip]}") unless options[search]
           Chef::Application.fatal!(':port is required') unless options[:port]
           Chef::Application.fatal!(':type must be a Chef::Zabbix::API:HostInterfaceType') unless options[:type].is_a?(Chef::Zabbix::API::HostInterfaceType)
+          # rubocop:enable LineLength
         end
 
         def symbolize(options)
@@ -242,4 +250,5 @@ class Chef
       end
     end
   end
+  # rubocop:enable ModuleLength
 end

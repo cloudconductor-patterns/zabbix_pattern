@@ -7,6 +7,7 @@ maintainer_email 'ccndctr@gmail.com'
 
 supports 'redhat', '>= 5.0'
 supports 'centos', '>= 5.0'
+depends 'build-essential'
 depends 'apache2', '>= 1.0.8'
 depends 'database', '>= 1.3.0'
 depends 'mysql', '>= 1.3.0'

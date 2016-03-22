@@ -23,7 +23,7 @@ template 'user_params.conf' do
     mode '644'
   end
   notifies :restart, 'service[zabbix_agentd]'
-  only_if { node['zabbix']['agent']['user_parameter'].length > 0 }
+  only_if { node['zabbix']['agent']['user_parameter'].empty? }
 end
 
 ruby_block 'start service' do

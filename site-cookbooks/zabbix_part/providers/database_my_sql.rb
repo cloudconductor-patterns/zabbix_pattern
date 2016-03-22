@@ -44,6 +44,7 @@ action :create do
   end
 end
 
+# rubocop:disable MethodLength
 def create_new_database
   #   user_connection = {
   #     :host => new_resource.host,
@@ -135,3 +136,4 @@ def create_new_database
     action :nothing
   end
 end
+# rubocop:enable MethodLength

@@ -74,9 +74,13 @@ zabbix_dirs.each do |dir|
 end
 
 unless node['zabbix']['agent']['source_url']
-  node.default['zabbix']['agent']['source_url'] = Chef::Zabbix.default_download_url(node['zabbix']['agent']['branch'], node['zabbix']['agent']['version'])
+  agent_branch = node['zabbix']['agent']['branch']
+  agent_version = node['zabbix']['agent']['version']
+  node.default['zabbix']['agent']['source_url'] = Chef::Zabbix.default_download_url(agent_branch, agent_version)
 end
 
 unless node['zabbix']['server']['source_url']
-  node.default['zabbix']['server']['source_url'] = Chef::Zabbix.default_download_url(node['zabbix']['server']['branch'], node['zabbix']['server']['version'])
+  server_branch = node['zabbix']['server']['branch']
+  server_version = node['zabbix']['server']['version']
+  node.default['zabbix']['server']['source_url'] = Chef::Zabbix.default_download_url(server_branch, server_version)
 end

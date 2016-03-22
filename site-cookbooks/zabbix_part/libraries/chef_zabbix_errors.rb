@@ -15,7 +15,7 @@ class Chef
       end
 
       def to_s
-        "MySql connection info must be a Hash containing :host, :dbname, :username and :root keys. Received: #{@bad_connection_info}"
+        "MySql connection info must be a Hash containing :host,:dbname,:username and :root keys. Received:#{@bad_connection_info}"
       end
     end
 
@@ -25,7 +25,7 @@ class Chef
       end
 
       def to_s
-        "ZabbixApi connection info must be a Hash containing :url, :user and :password keys. Received: #{@bad_connection_spec}"
+        "ZabbixApi connection info must be a Hash containing :url, :user and :password keys. Received:#{@bad_connection_spec}"
       end
     end
 

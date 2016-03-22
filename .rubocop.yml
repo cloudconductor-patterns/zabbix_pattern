@@ -23,7 +23,7 @@ Documentation:
 Style/RegexpLiteral:
   Enabled: false
 
-Style/SpaceBeforeFirstArg:
+SpaceBeforeFirstArg:
   Enabled: false
 
 NumericLiterals:

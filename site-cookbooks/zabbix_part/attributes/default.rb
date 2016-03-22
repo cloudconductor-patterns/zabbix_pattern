@@ -48,7 +48,7 @@ default['mysql']['version'] = '5.6'
 default['mysql']['enable_utf8'] = 'true'
 
 default['java']['jdk_version'] =
-  case node[:playform_family]
+  case node['playform_family']
   when 'rhel'
     node['platform_version'].to_f >= 7.0 ? '7' : '8'
   else
