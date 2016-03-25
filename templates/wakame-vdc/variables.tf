@@ -8,8 +8,8 @@ variable "subnet_ids" {
 variable "shared_security_group" {
   description = "SecurityGroup ID which is created by common network pattern."
 }
-variable "key_name" {
-  description = "Name of an existing KeyPair to enable SSH access to the instances."
+variable "wakame_key_id" {
+  description = "ID of an existing KeyPair on wakame-vdc to enable SSH access to the instances."
 }
 variable "monitoring_image" {
   description = "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor."

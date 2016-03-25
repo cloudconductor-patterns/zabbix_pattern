@@ -10,7 +10,7 @@ resource "wakamevdc_instance" "monitoring_server" {
   memory_size = "${var.monitoring_memory_size}"
   image_id = "${var.monitoring_image}"
   hypervisor = "kvm"
-  ssh_key_id = "${var.key_name}"
+  ssh_key_id = "${var.wakame_key_id}"
 
   vif {
     network_id = "${var.global_network}"
