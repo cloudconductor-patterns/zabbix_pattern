@@ -48,7 +48,7 @@
             <items>
                 <item>
                     <name>Available memory</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -91,7 +91,7 @@
                 </item>
                 <item>
                     <name>Checksum of $1</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -134,7 +134,7 @@
                 </item>
                 <item>
                     <name>Context switches per second</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -180,7 +180,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -226,7 +226,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -272,7 +272,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -318,7 +318,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -364,7 +364,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -410,7 +410,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -456,7 +456,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -502,7 +502,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -548,7 +548,7 @@
                 </item>
                 <item>
                     <name>Free swap space</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -591,7 +591,7 @@
                 </item>
                 <item>
                     <name>Free swap space in %</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -634,7 +634,7 @@
                 </item>
                 <item>
                     <name>Host boot time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -680,7 +680,7 @@
                 </item>
                 <item>
                     <name>Host local time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -726,7 +726,7 @@
                 </item>
                 <item>
                     <name>Host name</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -772,7 +772,7 @@
                 </item>
                 <item>
                     <name>Interrupts per second</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -818,7 +818,7 @@
                 </item>
                 <item>
                     <name>Maximum number of opened files</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -861,7 +861,7 @@
                 </item>
                 <item>
                     <name>Maximum number of processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -904,7 +904,7 @@
                 </item>
                 <item>
                     <name>Number of logged in users</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -950,7 +950,7 @@
                 </item>
                 <item>
                     <name>Number of processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -993,7 +993,7 @@
                 </item>
                 <item>
                     <name>Number of running processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1036,7 +1036,7 @@
                 </item>
                 <item>
                     <name>Processor load (1 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1082,7 +1082,7 @@
                 </item>
                 <item>
                     <name>Processor load (5 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1128,7 +1128,7 @@
                 </item>
                 <item>
                     <name>Processor load (15 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1174,7 +1174,7 @@
                 </item>
                 <item>
                     <name>System information</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1220,7 +1220,7 @@
                 </item>
                 <item>
                     <name>System uptime</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1266,7 +1266,7 @@
                 </item>
                 <item>
                     <name>Total memory</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1309,7 +1309,7 @@
                 </item>
                 <item>
                     <name>Total swap space</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1354,7 +1354,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Mounted filesystem discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>vfs.fs.discovery</key>
@@ -1383,7 +1383,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Free disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1426,7 +1426,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Free disk space on $1 (percentage)</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1469,7 +1469,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Free inodes on $1 (percentage)</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1512,7 +1512,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Total disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1555,7 +1555,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Used disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1605,7 +1605,7 @@
                             <status>0</status>
                             <priority>2</priority>
                             <description/>
-                            <type>0</type>
+                            <type>7</type>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template OS Linux:vfs.fs.inode[{#FSNAME},pfree].last(0)}&lt;20</expression>
@@ -1614,7 +1614,7 @@
                             <status>0</status>
                             <priority>2</priority>
                             <description/>
-                            <type>0</type>
+                            <type>7</type>
                         </trigger_prototype>
                     </trigger_prototypes>
                     <graph_prototypes>
@@ -1654,7 +1654,7 @@
                                     <color>00C800</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
+                                    <type>7</type>
                                     <item>
                                         <host>Template OS Linux Sample</host>
                                         <key>vfs.fs.size[{#FSNAME},free]</key>
@@ -1667,7 +1667,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Network interface discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>net.if.discovery</key>
@@ -1696,7 +1696,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Incoming network traffic on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
@@ -1739,7 +1739,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Outgoing network traffic on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
@@ -1791,7 +1791,7 @@
                             <yaxismax>100.0000</yaxismax>
                             <show_work_period>1</show_work_period>
                             <show_triggers>1</show_triggers>
-                            <type>0</type>
+                            <type>7</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
                             <percent_left>0.0000</percent_left>
@@ -1807,7 +1807,7 @@
                                     <color>00AA00</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
+                                    <type>7</type>
                                     <item>
                                         <host>Template OS Linux Sample</host>
                                         <key>net.if.in[{#IFNAME}]</key>
@@ -1819,7 +1819,7 @@
                                     <color>3333FF</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
+                                    <type>7</type>
                                     <item>
                                         <host>Template OS Linux Sample</host>
                                         <key>net.if.out[{#IFNAME}]</key>
@@ -1982,7 +1982,7 @@
             <status>0</status>
             <priority>2</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -1992,7 +1992,7 @@
             <status>0</status>
             <priority>1</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2002,7 +2002,7 @@
             <status>0</status>
             <priority>1</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2012,7 +2012,7 @@
             <status>0</status>
             <priority>2</priority>
             <description>OS spends significant time waiting for I/O (input/output) operations. It could be indicator of performance issues with storage system.</description>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2022,7 +2022,7 @@
             <status>0</status>
             <priority>1</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2032,7 +2032,7 @@
             <status>0</status>
             <priority>1</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2042,7 +2042,7 @@
             <status>0</status>
             <priority>3</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2052,7 +2052,7 @@
             <status>0</status>
             <priority>2</priority>
             <description>It probably means that the systems requires more physical memory.</description>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2062,7 +2062,7 @@
             <status>0</status>
             <priority>2</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2072,7 +2072,7 @@
             <status>0</status>
             <priority>2</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2082,7 +2082,7 @@
             <status>0</status>
             <priority>2</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
         <trigger>
@@ -2092,7 +2092,7 @@
             <status>0</status>
             <priority>1</priority>
             <description/>
-            <type>0</type>
+            <type>7</type>
             <dependencies/>
         </trigger>
     </triggers>
@@ -2105,7 +2105,7 @@
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
             <show_triggers>1</show_triggers>
-            <type>0</type>
+            <type>7</type>
             <show_legend>1</show_legend>
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
@@ -2121,7 +2121,7 @@
                     <color>009900</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.switches</key>
@@ -2133,7 +2133,7 @@
                     <color>000099</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.intr</key>
@@ -2149,7 +2149,7 @@
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
             <show_triggers>1</show_triggers>
-            <type>0</type>
+            <type>7</type>
             <show_legend>1</show_legend>
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
@@ -2165,7 +2165,7 @@
                     <color>009900</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg1]</key>
@@ -2177,7 +2177,7 @@
                     <color>000099</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg5]</key>
@@ -2189,7 +2189,7 @@
                     <color>990000</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.load[percpu,avg15]</key>
@@ -2221,7 +2221,7 @@
                     <color>FF5555</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,steal]</key>
@@ -2233,7 +2233,7 @@
                     <color>55FF55</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,softirq]</key>
@@ -2245,7 +2245,7 @@
                     <color>009999</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,interrupt]</key>
@@ -2257,7 +2257,7 @@
                     <color>990099</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,nice]</key>
@@ -2269,7 +2269,7 @@
                     <color>999900</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,iowait]</key>
@@ -2281,7 +2281,7 @@
                     <color>990000</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,system]</key>
@@ -2293,7 +2293,7 @@
                     <color>000099</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,user]</key>
@@ -2305,7 +2305,7 @@
                     <color>009900</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.cpu.util[,idle]</key>
@@ -2321,7 +2321,7 @@
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
             <show_triggers>1</show_triggers>
-            <type>0</type>
+            <type>7</type>
             <show_legend>1</show_legend>
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
@@ -2340,7 +2340,7 @@
                     <color>00C800</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>vm.memory.size[available]</key>
@@ -2384,7 +2384,7 @@
                     <color>00AA00</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
-                    <type>0</type>
+                    <type>7</type>
                     <item>
                         <host>Template OS Linux Sample</host>
                         <key>system.swap.size[,free]</key>
