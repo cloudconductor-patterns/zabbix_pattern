@@ -21,6 +21,15 @@ resource "aws_security_group" "monitoring_security_group" {
   }
 }
 
+resource "aws_security_group_rule" "shared_security_group_inbound_rule_zabbix" {
+    type = "ingress"
+    from_port = 10050
+    to_port = 10050
+    protocol = "tcp"
+    security_group_id = "${var.shared_security_group}"
+    source_security_group_id = "${aws_security_group.monitoring_security_group.id}"
+}
+
 resource "aws_instance" "monitoring_server" {
   ami = "${var.monitoring_image}"
   instance_type = "${var.monitoring_instance_type}"
