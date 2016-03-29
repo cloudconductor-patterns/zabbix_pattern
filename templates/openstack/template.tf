@@ -3,7 +3,7 @@ resource "openstack_compute_floatingip_v2" "main" {
 }
 
 resource "openstack_compute_secgroup_v2" "monitoring_security_group" {
-  name = "MonitoringSecurityGroup"
+  name = "MonitoringSecurityGroup${var.environment_id}"
   description = "Enable HTTP access via port 80, Zabbix-agent access"
   rule {
     from_port = 80

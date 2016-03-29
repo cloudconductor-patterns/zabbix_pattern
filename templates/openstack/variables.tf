@@ -10,6 +10,9 @@ variable "shared_security_group_name" {
 variable "key_name" {
   description = "Name of an existing EC2/OpenStack KeyPair to enable SSH access to the instances."
 }
+variable "environment_id" {
+  description = "[computed] Environment Id to avoid duplicate on Security group. This parameter is automatically filled by CloudConductor."
+}
 variable "monitoring_image" {
   description = "[computed] MonitoringServer Image Id. This parameter is automatically filled by CloudConductor."
 }
