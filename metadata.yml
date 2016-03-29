@@ -3,7 +3,7 @@ maintainer:       "TIS Inc."
 maintainer_email: "ccndctr@gmail.com"
 license:          "Apache v2.0"
 description:      "CloudConductor optional pattern for Zabbix"
-version:          "1.1.0"
+version:          "2.0.0"
 url:              "https://github.com/cloudconductor-patterns/zabbix_pattern"
 
 type:      "optional"
@@ -25,6 +25,6 @@ providers:
 
 supports:
   - platform: "centos"
-    platform_version: "6.5"
+    platform_version: "6.7"
   - platform: "centos"
-    platform_version: "7.1"
+    platform_version: "7.2"
