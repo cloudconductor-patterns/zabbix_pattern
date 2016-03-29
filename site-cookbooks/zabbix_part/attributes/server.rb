@@ -11,7 +11,7 @@ default['zabbix']['server']['log_level']              = 3
 default['zabbix']['server']['housekeeping_frequency'] = '1'
 default['zabbix']['server']['max_housekeeper_delete'] = '100000'
 default['zabbix']['server']['host']                   = 'localhost'
-default['zabbix']['server']['port']                   = 10_051
+default['zabbix']['server']['port']                   = 10051
 default['zabbix']['server']['name']                   = nil
 default['zabbix']['server']['start_pollers']          = 5
 
