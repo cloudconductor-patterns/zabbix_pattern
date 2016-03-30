@@ -64,8 +64,8 @@ describe 'zabbix_part::all_configure' do
     expect(chef_run).to include_recipe 'yum-epel'
   end
 
-  it 'include zabbix::agent recipe' do
-    expect(chef_run).to include_recipe 'zabbix::agent'
+  it 'include zabbix_part::agent recipe' do
+    expect(chef_run).to include_recipe 'zabbix_part::agent'
   end
 
   describe 'multiple of zabbix server is available' do

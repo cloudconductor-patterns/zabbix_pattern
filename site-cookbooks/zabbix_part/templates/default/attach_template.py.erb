@@ -17,7 +17,7 @@ if __name__ == "__main__":
         f.closed
         zabbix = ZabbixApi(url = config["zabbix"]["url"], username = config["zabbix"]["user"], password = config["zabbix"]["password"])
         zabbix.user_login()
-        
+
         for i in range(len(node)):
             host_data = zabbix.get_data('host.get', node[i]["Node"]["Node"])
             if len(host_data) == 0:

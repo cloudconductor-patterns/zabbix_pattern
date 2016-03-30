@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2014-10-01T08:19:46Z</date>
+    <date>2016-03-28T12:20:58Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,8 +9,159 @@
     </groups>
     <templates>
         <template>
-            <template>Template OS Linux Sample</template>
-            <name>Template OS Linux Sample</name>
+            <template>Template App Zabbix Agent Active</template>
+            <name>Template App Zabbix Agent Active</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Zabbix agent</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Agent ping</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>agent.ping</key>
+                    <delay>60</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>The agent always returns 1 for this item. It could be used in combination with nodata() for availability check.</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zabbix agent</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Zabbix agent ping status</name>
+                    </valuemap>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Host name of zabbix_agentd running</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>agent.hostname</key>
+                    <delay>3600</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>1</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zabbix agent</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Version of zabbix_agent(d) running</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>agent.version</key>
+                    <delay>3600</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>1</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Zabbix agent</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+            </items>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+        <template>
+            <template>Template OS Linux Active</template>
+            <name>Template OS Linux Active</name>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -48,7 +199,7 @@
             <items>
                 <item>
                     <name>Available memory</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -91,7 +242,7 @@
                 </item>
                 <item>
                     <name>Checksum of $1</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -134,7 +285,7 @@
                 </item>
                 <item>
                     <name>Context switches per second</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -180,7 +331,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -226,7 +377,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -272,7 +423,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -303,7 +454,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>The time the CPU has spent running users' processes that have been niced.</description>
+                    <description>The time the CPU has spent running users' proccess that have been niced.</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -318,7 +469,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -364,7 +515,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -410,7 +561,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -456,7 +607,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -502,7 +653,7 @@
                 </item>
                 <item>
                     <name>CPU $2 time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -548,7 +699,7 @@
                 </item>
                 <item>
                     <name>Free swap space</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -591,7 +742,7 @@
                 </item>
                 <item>
                     <name>Free swap space in %</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -634,7 +785,7 @@
                 </item>
                 <item>
                     <name>Host boot time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -680,7 +831,7 @@
                 </item>
                 <item>
                     <name>Host local time</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -726,7 +877,7 @@
                 </item>
                 <item>
                     <name>Host name</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -772,7 +923,7 @@
                 </item>
                 <item>
                     <name>Interrupts per second</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -818,7 +969,7 @@
                 </item>
                 <item>
                     <name>Maximum number of opened files</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -861,7 +1012,7 @@
                 </item>
                 <item>
                     <name>Maximum number of processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -904,7 +1055,7 @@
                 </item>
                 <item>
                     <name>Number of logged in users</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -950,7 +1101,7 @@
                 </item>
                 <item>
                     <name>Number of processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -993,7 +1144,7 @@
                 </item>
                 <item>
                     <name>Number of running processes</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1036,7 +1187,7 @@
                 </item>
                 <item>
                     <name>Processor load (1 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1082,7 +1233,7 @@
                 </item>
                 <item>
                     <name>Processor load (5 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1128,7 +1279,7 @@
                 </item>
                 <item>
                     <name>Processor load (15 min average per core)</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1174,7 +1325,7 @@
                 </item>
                 <item>
                     <name>System information</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1220,7 +1371,7 @@
                 </item>
                 <item>
                     <name>System uptime</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1266,7 +1417,7 @@
                 </item>
                 <item>
                     <name>Total memory</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1309,7 +1460,7 @@
                 </item>
                 <item>
                     <name>Total swap space</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
@@ -1354,7 +1505,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Mounted filesystem discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>vfs.fs.discovery</key>
@@ -1383,7 +1534,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Free disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1426,7 +1577,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Free disk space on $1 (percentage)</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1469,7 +1620,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Free inodes on $1 (percentage)</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1512,7 +1663,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Total disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1555,7 +1706,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Used disk space on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
@@ -1599,7 +1750,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template OS Linux Sample:vfs.fs.size[{#FSNAME},pfree].last(0)}&lt;20</expression>
+                            <expression>{Template OS Linux Active:vfs.fs.size[{#FSNAME},pfree].last(0)}&lt;20</expression>
                             <name>Free disk space is less than 20% on volume {#FSNAME}</name>
                             <url/>
                             <status>0</status>
@@ -1608,7 +1759,7 @@
                             <type>0</type>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template OS Linux:vfs.fs.inode[{#FSNAME},pfree].last(0)}&lt;20</expression>
+                            <expression>{Template OS Linux Active:vfs.fs.inode[{#FSNAME},pfree].last(0)}&lt;20</expression>
                             <name>Free inodes is less than 20% on volume {#FSNAME}</name>
                             <url/>
                             <status>0</status>
@@ -1644,7 +1795,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>2</type>
                                     <item>
-                                        <host>Template OS Linux Sample</host>
+                                        <host>Template OS Linux Active</host>
                                         <key>vfs.fs.size[{#FSNAME},total]</key>
                                     </item>
                                 </graph_item>
@@ -1656,7 +1807,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux Sample</host>
+                                        <host>Template OS Linux Active</host>
                                         <key>vfs.fs.size[{#FSNAME},free]</key>
                                     </item>
                                 </graph_item>
@@ -1667,7 +1818,7 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Network interface discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>net.if.discovery</key>
@@ -1696,7 +1847,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Incoming network traffic on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
@@ -1739,7 +1890,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Outgoing network traffic on $1</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
@@ -1809,7 +1960,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux Sample</host>
+                                        <host>Template OS Linux Active</host>
                                         <key>net.if.in[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1821,7 +1972,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Linux Sample</host>
+                                        <host>Template OS Linux Active</host>
                                         <key>net.if.out[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -1834,7 +1985,7 @@
             <macros/>
             <templates>
                 <template>
-                    <name>Template App Zabbix Agent</name>
+                    <name>Template App Zabbix Agent Active</name>
                 </template>
             </templates>
             <screens>
@@ -1860,7 +2011,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>CPU load</name>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1881,7 +2032,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>CPU utilization</name>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1902,7 +2053,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>Memory usage</name>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1923,7 +2074,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>Swap usage</name>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1944,7 +2095,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <key>proc.num[]</key>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1965,7 +2116,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <key>proc.num[,,run]</key>
-                                <host>Template OS Linux Sample</host>
+                                <host>Template OS Linux Active</host>
                             </resource>
                             <application/>
                         </screen_item>
@@ -1976,7 +2127,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template OS Linux Sample:vfs.file.cksum[/etc/passwd].diff(0)}&gt;0</expression>
+            <expression>{Template OS Linux Active:vfs.file.cksum[/etc/passwd].diff(0)}&gt;0</expression>
             <name>/etc/passwd has been changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -1986,7 +2137,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:kernel.maxfiles.last(0)}&lt;1024</expression>
+            <expression>{Template OS Linux Active:kernel.maxfiles.last(0)}&lt;1024</expression>
             <name>Configured max number of opened files is too low on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -1996,7 +2147,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:kernel.maxproc.last(0)}&lt;256</expression>
+            <expression>{Template OS Linux Active:kernel.maxproc.last(0)}&lt;256</expression>
             <name>Configured max number of processes is too low on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2006,7 +2157,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
+            <expression>{Template OS Linux Active:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
             <name>Disk I/O is overloaded on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2016,7 +2167,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.uname.diff(0)}&gt;0</expression>
+            <expression>{Template OS Linux Active:system.uname.diff(0)}&gt;0</expression>
             <name>Host information was changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2026,7 +2177,17 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.hostname.diff(0)}&gt;0</expression>
+            <expression>{Template App Zabbix Agent Active:agent.hostname.diff(0)}&gt;0</expression>
+            <name>Host name of zabbix_agentd was changed on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template OS Linux Active:system.hostname.diff(0)}&gt;0</expression>
             <name>Hostname was changed on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2036,7 +2197,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:vm.memory.size[available].last(0)}&lt;20M</expression>
+            <expression>{Template OS Linux Active:vm.memory.size[available].last(0)}&lt;20M</expression>
             <name>Lack of available memory on server {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2046,7 +2207,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.swap.size[,pfree].last(0)}&lt;50</expression>
+            <expression>{Template OS Linux Active:system.swap.size[,pfree].last(0)}&lt;50</expression>
             <name>Lack of free swap space on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2056,7 +2217,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.cpu.load[percpu,avg1].avg(5m)}&gt;5</expression>
+            <expression>{Template OS Linux Active:system.cpu.load[percpu,avg1].avg(5m)}&gt;5</expression>
             <name>Processor load is too high on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2066,7 +2227,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:proc.num[].avg(5m)}&gt;300</expression>
+            <expression>{Template OS Linux Active:proc.num[].avg(5m)}&gt;300</expression>
             <name>Too many processes on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2076,7 +2237,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:proc.num[,,run].avg(5m)}&gt;30</expression>
+            <expression>{Template OS Linux Active:proc.num[,,run].avg(5m)}&gt;30</expression>
             <name>Too many processes running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2086,7 +2247,27 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux Sample:system.uptime.change(0)}&lt;0</expression>
+            <expression>{Template App Zabbix Agent Active:agent.version.diff(0)}&gt;0</expression>
+            <name>Version of zabbix_agent(d) was changed on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template App Zabbix Agent Active:agent.ping.nodata(5m)}=1</expression>
+            <name>Zabbix agent on {HOST.NAME} is unreachable for 5 minutes</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template OS Linux Active:system.uptime.change(0)}&lt;0</expression>
             <name>{HOST.NAME} has just been restarted</name>
             <url/>
             <status>0</status>
@@ -2123,7 +2304,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.switches</key>
                     </item>
                 </graph_item>
@@ -2135,7 +2316,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.intr</key>
                     </item>
                 </graph_item>
@@ -2167,7 +2348,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.load[percpu,avg1]</key>
                     </item>
                 </graph_item>
@@ -2179,7 +2360,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.load[percpu,avg5]</key>
                     </item>
                 </graph_item>
@@ -2191,7 +2372,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.load[percpu,avg15]</key>
                     </item>
                 </graph_item>
@@ -2223,7 +2404,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,steal]</key>
                     </item>
                 </graph_item>
@@ -2235,7 +2416,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,softirq]</key>
                     </item>
                 </graph_item>
@@ -2247,7 +2428,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,interrupt]</key>
                     </item>
                 </graph_item>
@@ -2259,7 +2440,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,nice]</key>
                     </item>
                 </graph_item>
@@ -2271,7 +2452,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,iowait]</key>
                     </item>
                 </graph_item>
@@ -2283,7 +2464,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,system]</key>
                     </item>
                 </graph_item>
@@ -2295,7 +2476,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,user]</key>
                     </item>
                 </graph_item>
@@ -2307,7 +2488,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.cpu.util[,idle]</key>
                     </item>
                 </graph_item>
@@ -2326,24 +2507,33 @@
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
             <percent_right>0.0000</percent_right>
-            <ymin_type_1>1</ymin_type_1>
-            <ymax_type_1>2</ymax_type_1>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
             <ymin_item_1>0</ymin_item_1>
-            <ymax_item_1>
-                <host>Template OS Linux Sample</host>
-                <key>vm.memory.size[total]</key>
-            </ymax_item_1>
+            <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
+                    <sortorder>1</sortorder>
                     <drawtype>5</drawtype>
                     <color>00C800</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>vm.memory.size[available]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>DD0000</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template OS Linux Active</host>
+                        <key>vm.memory.size[total]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -2374,7 +2564,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>2</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.swap.size[,total]</key>
                     </item>
                 </graph_item>
@@ -2386,7 +2576,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Linux Sample</host>
+                        <host>Template OS Linux Active</host>
                         <key>system.swap.size[,free]</key>
                     </item>
                 </graph_item>

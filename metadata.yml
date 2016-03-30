@@ -3,13 +3,28 @@ maintainer:       "TIS Inc."
 maintainer_email: "ccndctr@gmail.com"
 license:          "Apache v2.0"
 description:      "CloudConductor optional pattern for Zabbix"
-version:          "1.1.0"
+version:          "2.0.0"
 url:              "https://github.com/cloudconductor-patterns/zabbix_pattern"
 
 type:      "optional"
-depends:   [zabbix]
+dependencies: ["common_network"]
 conflicts: []
 
+roles:
+  - monitoring
+
+providers:
+  aws:
+    - cloud_formation
+    - terraform
+  openstack:
+    - cloud_formation
+    - terraform
+  wakame-vdc:
+    - terraform
+
 supports:
-  - os: "centos"
-    version: "= 6.5"
+  - platform: "centos"
+    platform_version: "6.7"
+  - platform: "centos"
+    platform_version: "7.2"
