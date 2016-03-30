@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+## version 2.0.0 (2016/03/30)
+
+  - Support CloudConductor v2.0.
+  - Support CentOS 7.x
+  - Support latest Chef
+  - Support [Terraform](https://www.terraform.io/)
+  - Support [Wakame-vdc](http://wakame-vdc.org/)
+  - Add the requirements for test run in test-kitchen.
+  - Remove zabbix cookbook from the required outside cookbook. So that include to this.
+
 ## version 1.1.0 (2015/09/30)
   - Support CloudConductor v1.1.
   - Remove the event_handler.sh, modified to control by the Metronome (task order control tool).Therefore, add the requirements(task.yml file etc.) to control from the Metronome.
